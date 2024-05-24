@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Project\\tulib-angular\\backend\\backend.csproj": {}
+    "C:\\Project\\tulib-angular\\backend\\backend.csproj": {}
   },
   "projects": {
-    "c:\\Project\\tulib-angular\\backend\\backend.csproj": {
+    "C:\\Project\\tulib-angular\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Project\\tulib-angular\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Project\\tulib-angular\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "c:\\Project\\tulib-angular\\backend\\backend.csproj",
+        "projectPath": "C:\\Project\\tulib-angular\\backend\\backend.csproj",
         "packagesPath": "C:\\Users\\noppa\\.nuget\\packages\\",
-        "outputPath": "c:\\Project\\tulib-angular\\backend\\obj\\",
+        "outputPath": "C:\\Project\\tulib-angular\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\noppa\\AppData\\Roaming\\NuGet\\NuGet.Config",
