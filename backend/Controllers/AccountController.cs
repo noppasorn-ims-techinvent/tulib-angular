@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using backend.Dtos;
 using backend.Models;
+using backend.Utilities.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,17 +16,19 @@ namespace backend.Controllers
     [Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
+        private IJwtService _jwtService;
 
-        public AccountController(UserManager<AppUser> userManager,
+        public AccountController(UserManager<User> userManager,
         RoleManager<IdentityRole> roleManager,
-        IConfiguration configuration)
+        IConfiguration configuration, IJwtService jwtService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
+            _jwtService = jwtService;
         }
 
         // api/account/register
@@ -38,13 +41,13 @@ namespace backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new AppUser
+            var user = new User
             {
                 Email = registerDto.Email,
-                FirstName = registerDto.FirstName,
-                LastName = registerDto.LastName,
+                Firstname = registerDto.FirstName,
+                Lastname = registerDto.LastName,
                 UserName = registerDto.FirstName,
-                PhoneNumber = registerDto.PhoneNumber
+                Telephone = registerDto.Telephone
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
@@ -105,7 +108,7 @@ namespace backend.Controllers
                 });
             }
 
-            var token = GenerateToken(user); // สร้าง JWT
+            var token = _jwtService.GenerateToken(user); // สร้าง JWT
 
             return Ok(new AuthResponseDto
             {
@@ -113,46 +116,6 @@ namespace backend.Controllers
                 isSuccess = true,
                 Message = "Login Success."
             });
-        }
-
-        private string GenerateToken(AppUser user)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler(); // ตัวจัดการโทเค็น
-
-            var key = Encoding.ASCII
-            .GetBytes(_configuration.GetSection("JWTSettings").GetSection("securityKey").Value!); // ดึงค่า securityKey จากการตั้งค่า
-
-            var roles = _userManager.GetRolesAsync(user).Result; // ดึงบทบาทของผู้ใช้
-
-            List<Claim> claims =
-            new List<Claim> // สร้างรายการของ Claims
-            {
-                new (JwtRegisteredClaimNames.Email,user.Email ?? ""),
-                new (JwtRegisteredClaimNames.Name,user.FirstName ?? ""),
-                new (JwtRegisteredClaimNames.NameId,user.Id ?? ""),
-                new (JwtRegisteredClaimNames.Aud,
-                _configuration.GetSection("JWTSettings").GetSection("ValidAudience").Value!),
-                new (JwtRegisteredClaimNames.Iss,_configuration.GetSection("JWTSettings").GetSection("ValidIssuer").Value!)
-            };
-
-            foreach (var role in roles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));
-            }
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims), // กำหนด Claims ให้กับโทเค็น
-                Expires = DateTime.UtcNow.AddDays(1), // กำหนดวันหมดอายุของโทเค็น
-                SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(key),
-                    SecurityAlgorithms.HmacSha256 // กำหนดการเข้ารหัสโทเค็นด้วย HMAC SHA256
-                )
-            };
-
-            var token = tokenHandler.CreateToken(tokenDescriptor); // สร้างโทเค็น
-
-            return tokenHandler.WriteToken(token);
         }
 
         [Authorize]
@@ -175,9 +138,9 @@ namespace backend.Controllers
             {
                 Id = user.Id,
                 Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                PhoneNumber = user.PhoneNumber,
+                FirstName = user.Firstname,
+                LastName = user.Lastname,
+                Telephone = user.Telephone,
                 Roles = [.. await _userManager.GetRolesAsync(user)]
             });
         }
@@ -185,17 +148,20 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDetailDto>>> GetUsers()
         {
-            var users = await _userManager.Users.Select(u => new UserDetailDto
+            var users = await _userManager.Users.ToListAsync();
+
+            var usersDto = users.Select(u => new UserDetailDto
             {
                 Id = u.Id,
                 Email = u.Email,
-                FirstName = u.FirstName,
-                LastName = u.LastName,
-                PhoneNumber = u.PhoneNumber,
+                FirstName = u.Firstname,
+                LastName = u.Lastname,
+                Telephone = u.Telephone,
                 Roles = _userManager.GetRolesAsync(u).Result.ToArray()
-            }).ToListAsync();
+            }).ToList();
 
-            return Ok(users);
+            return Ok(usersDto);
         }
+
     }
 }
