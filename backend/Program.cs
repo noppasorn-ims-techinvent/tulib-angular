@@ -106,7 +106,7 @@ try
     {
         c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
-            Description = @"JWT Authorization Example : 'Bearer eieiteestesttsettest'",
+            Description = @"JWT Authorization Example : 'Bearer {token}'",
             Name = "Authorization",
             In = ParameterLocation.Header,
             Type = SecuritySchemeType.ApiKey,

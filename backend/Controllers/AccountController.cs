@@ -146,6 +146,7 @@ namespace backend.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<UserDetailDto>>> GetUsers()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -161,6 +162,29 @@ namespace backend.Controllers
             }).ToList();
 
             return Ok(usersDto);
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteAccount(string id)
+        {
+            // find User by their id
+
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user is null)
+            {
+                return NotFound("User not found.");
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (result.Succeeded)
+            {
+                return Ok(new { message = "User deleted successfully." });
+            }
+
+            return BadRequest("User deleting failed.");
         }
 
     }

@@ -54,17 +54,22 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RoleResponseDto>>> GetRoles()
         {
-
+            var roles = await _roleManager.Roles.ToListAsync();
+            var roleDtos = new List<RoleResponseDto>();
+            
             // list of users with total user count
-
-            var roles = await _roleManager.Roles.Select(r => new RoleResponseDto
+            foreach (var role in roles)
             {
-                Id = r.Id,
-                Name = r.Name,
-                TotalUsers = _userManager.GetUsersInRoleAsync(r.Name!).Result.Count
-            }).ToListAsync();
+                var usersInRole = await _userManager.GetUsersInRoleAsync(role.Name!);
+                roleDtos.Add(new RoleResponseDto
+                {
+                    Id = role.Id,
+                    Name = role.Name,
+                    TotalUsers = usersInRole.Count
+                });
+            }
 
-            return Ok(roles);
+            return Ok(roleDtos);
         }
 
         [HttpDelete("{id}")]
