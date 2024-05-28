@@ -43,7 +43,8 @@ namespace backend.Controllers
                 Email = registerDto.Email,
                 FirstName = registerDto.FirstName,
                 LastName = registerDto.LastName,
-                UserName = registerDto.FirstName
+                UserName = registerDto.FirstName,
+                PhoneNumber = registerDto.PhoneNumber
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
@@ -176,6 +177,7 @@ namespace backend.Controllers
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
                 Roles = [.. await _userManager.GetRolesAsync(user)]
             });
         }
@@ -189,6 +191,7 @@ namespace backend.Controllers
                 Email = u.Email,
                 FirstName = u.FirstName,
                 LastName = u.LastName,
+                PhoneNumber = u.PhoneNumber,
                 Roles = _userManager.GetRolesAsync(u).Result.ToArray()
             }).ToListAsync();
 
