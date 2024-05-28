@@ -1,11 +1,13 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using backend.Dtos; 
+using backend.Dtos;
 using backend.Models;
-using Microsoft.AspNetCore.Identity; 
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens; 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace backend.Controllers
 {
@@ -15,7 +17,7 @@ namespace backend.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IConfiguration _configuration; 
+        private readonly IConfiguration _configuration;
 
         public AccountController(UserManager<AppUser> userManager,
         RoleManager<IdentityRole> roleManager,
@@ -27,12 +29,13 @@ namespace backend.Controllers
         }
 
         // api/account/register
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult<string>> Register(RegisterDto registerDto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState); 
+                return BadRequest(ModelState);
             }
 
             var user = new AppUser
@@ -47,7 +50,7 @@ namespace backend.Controllers
 
             if (!result.Succeeded)
             {
-                return BadRequest(result.Errors); 
+                return BadRequest(result.Errors);
             }
 
             if (registerDto.Roles is null)
@@ -58,7 +61,7 @@ namespace backend.Controllers
             {
                 foreach (var role in registerDto.Roles)
                 {
-                    await _userManager.AddToRoleAsync(user, role); 
+                    await _userManager.AddToRoleAsync(user, role);
                 }
             }
 
@@ -70,12 +73,13 @@ namespace backend.Controllers
         }
 
         // api/account/login
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<AuthResponseDto>> Login(LoginDto loginDto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState); 
+                return BadRequest(ModelState);
             }
 
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
@@ -85,7 +89,7 @@ namespace backend.Controllers
                 return Unauthorized(new AuthResponseDto
                 {
                     isSuccess = false,
-                    Message = "User not found with this email" 
+                    Message = "User not found with this email"
                 });
             }
 
@@ -96,7 +100,7 @@ namespace backend.Controllers
                 return Unauthorized(new AuthResponseDto
                 {
                     isSuccess = false,
-                    Message = "Invalid Password." 
+                    Message = "Invalid Password."
                 });
             }
 
@@ -106,7 +110,7 @@ namespace backend.Controllers
             {
                 Token = token,
                 isSuccess = true,
-                Message = "Login Success." 
+                Message = "Login Success."
             });
         }
 
@@ -150,10 +154,45 @@ namespace backend.Controllers
             return tokenHandler.WriteToken(token);
         }
 
-        // [HttpGet("detail")]
-        // public async Task<ActionResult<UserDetailDto>> GetUserDetail()
-        // {
+        [Authorize]
+        [HttpGet("detail")]
+        public async Task<ActionResult<UserDetailDto>> GetUserDetail()
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(currentUserId!);
 
-        // }
+            if (user is null)
+            {
+                return NotFound(new AuthResponseDto
+                {
+                    isSuccess = false,
+                    Message = "User not found"
+                });
+            }
+
+            return Ok(new UserDetailDto
+            {
+                Id = user.Id,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Roles = [.. await _userManager.GetRolesAsync(user)]
+            });
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<UserDetailDto>>> GetUsers()
+        {
+            var users = await _userManager.Users.Select(u => new UserDetailDto
+            {
+                Id = u.Id,
+                Email = u.Email,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Roles = _userManager.GetRolesAsync(u).Result.ToArray()
+            }).ToListAsync();
+
+            return Ok(users);
+        }
     }
 }

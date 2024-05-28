@@ -19,7 +19,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 var JWTSetting = builder.Configuration.GetSection("JWTSettings"); // ดึงค่าการตั้งค่า JWT จากไฟล์ configuration
 
-// ตรวจสอบให้แน่ใจว่าค่า securityKey ไม่ใช่ null
 string? securityKey = JWTSetting.GetValue<string>("securityKey");
 if (string.IsNullOrEmpty(securityKey))
 {
