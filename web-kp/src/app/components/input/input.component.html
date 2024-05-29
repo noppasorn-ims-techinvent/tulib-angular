@@ -1,0 +1,29 @@
+<div class="">
+  <div class="text-font-title font-bold text-sm">
+    <span> {{ label }}</span>
+    <span  *ngIf="requred"
+    class="text-xs text-red"> *</span>
+  </div>
+  <div class="py-1">
+    <input
+      #inputRef
+      [type]="type"
+      class="border border-solid border-font-disabled rounded-md hover:border-secondary hover:border-2 outline-none px-2 placeholder:text-font-disabled placeholder:text-sm"
+      (focus)="onFocus(true)"
+      (blur)="onFocus(false)"
+      [formControl]="control"
+      [attr.placeholder]="label"
+      [ngStyle]="{
+        width: width
+      }"
+      style="height: 40px"
+      [ngClass]="[statusFocus ? 'focus' : '']"
+    />
+  </div>
+  <div
+    *ngIf="inputError == true && errorMessage != undefined"
+    class="text-xs text-red"
+  >
+    {{ errorMessage }}
+  </div>
+</div>

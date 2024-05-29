@@ -1,0 +1,14 @@
+<button
+  (click)="onClick()"
+  class="py-2 rounded-full shadow-md bg-optoin2-primary-variant enabled:hover:bg-primary-variant disabled:opacity-25 "
+  [ngClass]="[style ? style : '', disabled ? 'disabled' : '']"
+  [ngStyle]="{
+    width: width ? width : '225px',
+  
+  }"
+  [disabled]="disabled"
+>
+  <div class="text-white text-md">
+    {{ text }}
+  </div>
+</button>

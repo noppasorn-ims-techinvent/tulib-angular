@@ -1,0 +1,33 @@
+.header-background {
+  background: linear-gradient(
+    180deg,
+    #008ecf 0%,
+    rgba(0, 142, 207, 0.3) 59.62%,
+    rgba(0, 142, 207, 0) 100%
+  );
+  /* , url(/assets/4526.jpg); */
+  /* background-position: center; */
+  /* background-size: auto; */
+  /* background-repeat: no-repeat; */
+  width: 100vw;
+  transition: height 0.3s ease;
+  /* margin-bottom: 50px; */
+}
+
+.menu-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensure the menu spans the full width of the header */
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 50px; /* Set the initial height */
+  transition: transform 0.3s; /* Add transition for all properties */
+}
+.rectangle {
+  background-color: white;
+  height: 3px;
+
+  border-radius: 10px 10px 0px 0px;
+}

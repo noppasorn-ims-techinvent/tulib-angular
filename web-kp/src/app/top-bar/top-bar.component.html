@@ -1,0 +1,139 @@
+<nav class="header-background" [ngStyle]="{ height: topBarHeight + 'px' }">
+  <div
+    [ngStyle]="{
+      'height.px': currentPage === 'home' ? 400 : 150,
+      width: '100%',
+      'padding.px': 20
+    }"
+    class="flex justify-between"
+  >
+    <a href="" class="">
+      <img src="../../assets/logo.svg" class="h-8" alt="Flowbite Logo" />
+    </a>
+    <div class="text-white">
+      <a class="font-normal md:hover:underline" [routerLink]="'/login'"
+        >เข้าสู่ระบบ</a
+      >
+      <span class="mx-4">|</span
+      ><a class="font-light md:hover:underline" [routerLink]="'/register'"
+        >ลงทะเบียน</a
+      >
+    </div>
+  </div>
+
+  <div
+    style="padding-inline: 20px"
+    class="menu-background bg-primary opacity-75"
+    id="navbar-default"
+    [ngStyle]="{ transform: 'translateY(' + menuTransform + 'px)' }"
+  >
+    <ul class="font-medium flex gap-20">
+      <li class="">
+        <div
+          [routerLink]="'/home'"
+          style="height: 48px"
+          class="flex items-center"
+        >
+          <a class="text-white hover:text-blue-500" aria-current="page"
+            >หน้าแรก</a
+          >
+        </div>
+        <div class="rectangle" *ngIf="currentPage === 'home'"></div>
+      </li>
+
+      <li>
+        <div [routerLink]="'/'" style="height: 48px" class="flex items-center">
+          <a
+            class="text-white hover:text-blue-500"
+            aria-current="page"
+            >PR News</a
+          >
+        </div>
+        <!-- <div class="rectangle"></div> -->
+      </li>
+      <li>
+        <button
+          id="dropdownNavbarLink"
+          data-dropdown-toggle="dropdownNavbar"
+          class="flex items-center justify-between w-full text-white hover:text-blue-500"
+          style="height: 48px"
+          (click)="toggleNavbar()"
+        >
+          บัตร
+          <svg
+            class="w-2.5 h-2.5 ms-2.5"
+            aria-hidden="true"
+            xmlns=""
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        </button>
+        <!-- <div class="rectangle"></div> -->
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownNavbar"
+          class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-sm shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute"
+          [ngClass]="{ hidden: !showMenu, flex: showMenu }"
+          appOutsideClick
+          (appOutsideClick)="toggleNavbar()"
+        >
+          <ul
+            class="py-2 text-sm text-gray-700 dark:text-gray-400"
+            aria-labelledby="dropdownLargeButton"
+          >
+            <li>
+              <div
+                [routerLink]="'/home'"
+                style="height: 48px"
+                class="flex items-center"
+              >
+                <a
+                  class="text-white hover:text-blue-500"
+                  aria-current="page"
+                  >เลือกซื้อบัตร</a
+                >
+              </div>
+              <div class="rectangle" *ngIf="currentPage === 'home'"></div>
+            </li>
+            <li>
+              <div
+                [routerLink]="'/home'"
+                style="height: 48px"
+                class="flex items-center"
+              >
+                <a
+                  class="text-white hover:text-blue-500"
+                  aria-current="page"
+                  >รับบัตรเข้าชมผ่านอีเมล</a
+                >
+              </div>
+              <div class="rectangle" *ngIf="currentPage === 'home'"></div>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div
+          [routerLink]="'/home'"
+          style="height: 48px"
+          class="flex items-center"
+        >
+          <a
+            class="text-white hover:text-blue-500"
+            aria-current="page"
+            >ติดต่อเรา</a
+          >
+        </div>
+        <!-- <div class="rectangle" *ngIf="currentPage === 'home'"></div> -->
+      </li>
+    </ul>
+  </div>
+</nav>
