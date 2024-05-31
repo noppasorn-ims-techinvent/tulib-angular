@@ -11,8 +11,10 @@ module.exports = {
         secondary: "#88CBFD",
         "font-disabled" : "#BDBDBD",
         "font-title" : "#666666",
+        background : "#F3FAFF",
         accent: "#7FDBFF",
-        black: "#111111",
+        black: "#000000",
+        error : "#B20000",
         gray: {
           100: "#F8F8F8",
           200: "#EAEAEA",

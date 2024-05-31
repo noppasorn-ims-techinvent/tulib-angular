@@ -1,25 +1,15 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  ViewChild,
-  input,
-} from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-input',
+  selector: 'app-input-password',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.css',
+  imports: [ReactiveFormsModule,CommonModule],
+  templateUrl: './input-password.component.html',
+  styleUrl: './input-password.component.css'
 })
-export class InputComponent implements OnChanges{
+export class InputPasswordComponent implements OnChanges{
   @Input() placeholder: string = '';
   @Input() width: string = '';
   @Input() label: string = '';
@@ -29,11 +19,13 @@ export class InputComponent implements OnChanges{
   @Input() inputError: boolean = false;
   @Input() required: boolean = false;
   @Input() control = new FormControl();
-
+  
+  showPassword: boolean = false;
   @Output() valueChange = new EventEmitter<string>();
 
-  @ViewChild('inputRef') inputRef!: ElementRef;
 
+  @ViewChild('inputRef') inputRef!: ElementRef;
+  
   statusFocus: boolean = false;
 
   get value(): string {
@@ -52,8 +44,15 @@ export class InputComponent implements OnChanges{
       this.control.enable();
     }
   }
-
-  onFocus(event: boolean) {
+ onFocus(event: boolean) {
     this.statusFocus = event;
+   
+  }
+  focusInputElement() {
+    this.inputRef.nativeElement.focus();
+  }
+  
+  toggleShowPassword(){
+    this.showPassword = !this.showPassword
   }
 }

@@ -9,8 +9,9 @@
   /* background-position: center; */
   /* background-size: auto; */
   /* background-repeat: no-repeat; */
-  width: 100vw;
+  /* width: 100vw; */
   transition: height 0.3s ease;
+  padding: 20px;
   /* margin-bottom: 50px; */
 }
 
