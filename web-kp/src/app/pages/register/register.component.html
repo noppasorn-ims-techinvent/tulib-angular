@@ -26,6 +26,7 @@
             [options]="options"
             [label]="'คำนำหน้า'"
             [placeholder]="'เลือก'"
+            [control]="getFormControlByKey('prefix')"
           ></app-dropdown>
           <app-input
             [control]="getFormControlByKey('firstName')"
@@ -50,7 +51,6 @@
             "
             [errorMessage]="'กรุณากรอกข้อมูล'"
             [required]="true"
-            [disabled]="true"
           ></app-input>
         </div>
         <div class="flex justify-between" style="padding-bottom: 20px">
@@ -88,19 +88,19 @@
             [required]="true"
           ></app-input-password>
           <app-input-password
-            [control]="getFormControlByKey('confirmPassword')"
-            [label]="'ยืนยันรหัสผ่าน'"
-            [placeholder]="'ยืนยันรหัสผ่าน'"
-            [width]="'425px'"
-            [inputError]="
-              getFormControlByKey('confirmPassword').invalid &&
-              getFormControlByKey('confirmPassword').touched
-            "
-            [type]="'password'"
-            [errorMessage]="'กรุณากรอกข้อมูล'"
-            [required]="true"
-            [disabled]="true"
-          ></app-input-password>
+          [control]="getFormControlByKey('confirmPassword')"
+          [label]="'ยืนยันรหัสผ่าน'"
+          [placeholder]="'ยืนยันรหัสผ่าน'"
+          [width]="'425px'"
+          [inputError]="
+            getFormControlByKey('confirmPassword').invalid &&
+            getFormControlByKey('confirmPassword').touched
+          "
+          [type]="'password'"
+          [errorMessage]="
+            getFormControlByKey('confirmPassword').errors?.['confirmPasswordEmpty'] ? 'กรุณายืนยันรหัสผ่าน' : 'รหัสผ่านไม่ตรงกัน'"
+          [required]="true"
+        ></app-input-password>
         </div>
         <div class="flex" style="padding-bottom: 20px">
           <app-checkbox
@@ -117,7 +117,7 @@
         </div>
         <div class="flex justify-center">
           <app-button
-            (eventActionClick)="onSubmt()"
+            (eventActionClick)="onSubmit()"
             [text]="'ลงทะเบียน'"
             [disabled]="form.invalid"
           ></app-button>

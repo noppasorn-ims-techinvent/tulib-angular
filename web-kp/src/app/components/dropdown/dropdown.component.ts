@@ -35,9 +35,9 @@ export class DropdownComponent {
 
     this.selectKey = dataItem.text;
     this.placeholder = dataItem.text;
+    this.onSelected = true
     this.control.setValue(dataItem.value);
     this.onFocus(false);
-    this.onSelected = true
     // this.eventSelectItem.emit(dataItem.value);
   }
 

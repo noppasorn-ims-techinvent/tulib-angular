@@ -30,20 +30,24 @@ import { CommonModule } from '@angular/common';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent implements OnInit {
-  topBarHeight: number = 0;
+  topBarHeight: number = 0;  
+  passwordErrorMessage : string = 'กรุณากรอกรหัสผ่านให้ตรงกัน';
+  confirmPasswordErrorMessage : string = 'กรุณายืนยันรหัสผ่าน';  
+
   form: FormGroup = new FormGroup({});
+
   options: Option[] = [
     {
       text: 'นางสาว',
-      value: 1,
+      value: 'นางสาว',
     },
     {
       text: 'นาง',
-      value: 2,
+      value: 'นาง',
     },
     {
       text: 'นาย',
-      value: 3,
+      value: 'นาย',
     },
   ];
   constructor(private appState: AppState) {}
@@ -54,15 +58,26 @@ export class RegisterComponent implements OnInit {
       .getHeaderHeightCurrent()
       .subscribe((h) => (this.topBarHeight = h));
     this.form = new FormGroup({
-      // prefix: new FormControl<string>(''),
+      prefix: new FormControl<string>(''),
       firstName: new FormControl<string>('', Validators.required),
       lastName: new FormControl<string>('', Validators.required),
       phoneNumber: new FormControl<string>(''),
       email: new FormControl<string>('', Validators.required),
       password: new FormControl<string>('', Validators.required),
-      confirmPassword: new FormControl<string>('', Validators.required),
+      confirmPassword: new FormControl<string>('', [Validators.required, this.confirmPasswordValidator.bind(this)]),
       allow: new FormControl<boolean>(false, Validators.required),
     });
+  }
+
+  confirmPasswordValidator(control: FormControl): { [key: string]: boolean } | null {
+    const password = this.form.get('password')?.value;
+    const confirmPassword = control.value;
+
+    if (!confirmPassword) {
+      return { 'confirmPasswordEmpty': true };
+    }
+
+    return password === confirmPassword ? null : { 'passwordMismatch': true };
   }
 
   getFormControlByKey(key: string) {
@@ -72,7 +87,7 @@ export class RegisterComponent implements OnInit {
     this.getFormControlByKey('allow').setValue(event);
   }
 
-  onSubmt(): void {
+  onSubmit(): void {
     console.log(this.form);
   }
 }
