@@ -4,5 +4,5 @@ export interface RegisterRequest {
   lastName: string;
   password: string;
   telephone: string;
-  roles: string[];
+  prefix: string;
 }

@@ -14,6 +14,8 @@ import { InputPasswordComponent } from '../../components/input-password/input-pa
 import { DropdownComponent } from '../../components/dropdown/dropdown.component';
 import { Option } from '../../interface/base/option';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -50,7 +52,7 @@ export class RegisterComponent implements OnInit {
       value: 'นาย',
     },
   ];
-  constructor(private appState: AppState) {}
+  constructor(private appState: AppState,private authService:AuthService) {}
 
   ngOnInit(): void {
     this.appState.setPageCurrent('register');
@@ -61,11 +63,11 @@ export class RegisterComponent implements OnInit {
       prefix: new FormControl<string>(''),
       firstName: new FormControl<string>('', Validators.required),
       lastName: new FormControl<string>('', Validators.required),
-      phoneNumber: new FormControl<string>(''),
+      telephone: new FormControl<string>(''),
       email: new FormControl<string>('', Validators.required),
       password: new FormControl<string>('', Validators.required),
       confirmPassword: new FormControl<string>('', [Validators.required, this.confirmPasswordValidator.bind(this)]),
-      allow: new FormControl<boolean>(false, Validators.required),
+      allow: new FormControl<boolean>(false, [Validators.required,Validators.pattern('true')]),
     });
   }
 
@@ -89,5 +91,32 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.form);
+    this.authService.register({
+      prefix: this.form.get('prefix')?.value,
+      firstName: this.form.get('firstName')?.value,
+      lastName: this.form.get('lastName')?.value,
+      telephone: this.form.get('telephone')?.value,
+      email: this.form.get('email')?.value,
+      password: this.form.get('password')?.value
+
+    }).subscribe((response) => { 
+      if(response.isSuccess){
+          Swal.fire({
+          title: 'ลงทะเบียนสำเร็จ',
+          text: 'กรุณาตรวจสอบอีเมลของท่านเพื่อเข้าสู่ระบบ',
+          icon: 'success',
+          showConfirmButton: true,
+        })
+      }else{
+        Swal.fire({
+          
+          icon: "error",
+          title: "ลงทะเบียนไม่สำเร็จ",
+          text:response.message,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    })
   }
 }
