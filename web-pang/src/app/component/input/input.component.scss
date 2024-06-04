@@ -1,0 +1,27 @@
+.centered-input-container {
+  position: relative;
+  margin: 20px 0;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #666666;
+}
+
+.centered-input {
+  width: 425px;
+  height: 40px;
+  padding: 12px 8px;
+  border-radius: 4px;
+  border-color: #bdbdbd;
+  border-style: solid;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.centered-input::placeholder {
+  color: #888;
+  opacity: 1;
+}

@@ -12,7 +12,7 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20240528103101_Initial")]
+    [Migration("20240530084516_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -207,6 +207,10 @@ namespace backend.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Prifix")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

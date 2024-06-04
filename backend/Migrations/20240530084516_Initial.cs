@@ -30,6 +30,7 @@ namespace backend.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Prifix = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Firstname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Telephone = table.Column<string>(type: "nvarchar(max)", nullable: false),

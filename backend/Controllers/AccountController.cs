@@ -47,7 +47,7 @@ namespace backend.Controllers
                 Email = registerDto.Email,
                 Firstname = registerDto.FirstName,
                 Lastname = registerDto.LastName,
-                UserName = registerDto.FirstName,
+                UserName = registerDto.Email,
                 Telephone = registerDto.Telephone
             };
 
