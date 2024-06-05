@@ -124,7 +124,7 @@ namespace backend.Controllers
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(currentUserId!);
-
+            Console.WriteLine(user);
             if (user is null)
             {
                 return NotFound(new AuthResponseDto

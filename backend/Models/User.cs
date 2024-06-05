@@ -12,5 +12,6 @@ namespace backend.Models
         public string Firstname {get;set;} = string.Empty;
         public string Lastname {get;set;} = string.Empty;
         public string Telephone {get;set;} = string.Empty;
+        
     }
 }

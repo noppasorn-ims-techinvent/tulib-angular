@@ -11,8 +11,8 @@ namespace backend.Data.Interface
     {
         public PaginationList<TagDto> GetTags(int page, int size, TagDto? search);
         public TagDto GetTagtById(int id);
-        public TagDto CreateTag(TagDto tagDto,int userIdWhoTakeAction);
-        public TagDto UpdateTag(TagDto tagDto, int userIdWhoTakeAction);
+        public TagDto CreateTag(TagDto tagDto,string userId);
+        public TagDto UpdateTag(TagDto tagDto, string userId);
         public void DeleteTag(int id);
         public bool IsHaveTag(int id);
     }

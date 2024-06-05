@@ -6,6 +6,7 @@ using backend.Data.Interface;
 using backend.DTO;
 using backend.DTO.MainModel;
 using backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Data
 {
@@ -18,50 +19,106 @@ namespace backend.Data
             this.Context = Context;
         }
 
-        public TagDto CreateTag(TagDto tagDto, int userIdWhoTakeAction)
-        {
-            DateTime currentTime = DateTime.Now;
-            Tag data = new Tag
-            {
-                AircraftCode = aircraftDto.AircraftCode,
-                AircraftName = aircraftDto.AircraftName,
-                Description = aircraftDto.Description,
-                Active = aircraftDto.Active,
-                CreatedDate = currentTime,
-                ModifiedDate = currentTime,
-                CreatedById = userIdWhoTakeAction,
-                ModifiedById = userIdWhoTakeAction
-            };
-
-            Context.Aircrafts.Add(data);
-            Context.SaveChanges();
-
-            return
-        }
-
-        public void DeleteTag(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public PaginationList<TagDto> GetTags(int page, int size, TagDto? search)
         {
-            throw new NotImplementedException();
+            var data = new PaginationList<TagDto>();
+
+            IQueryable<Tag> query = from tag in Context.Tags select tag;
+
+            // if (!String.IsNullOrEmpty(search))
+            // {
+            //     query = query.Where(s => s.AircraftCode.Contains(search));
+            // }
+
+            List<TagDto> tagList = query
+                .Select((tag) =>
+                    new TagDto
+                    {
+                        Id = tag.Id,
+                        Code = tag.Code,
+                        Name = tag.Name,
+                        Active = tag.Active
+                    }
+            ).Skip((page - 1) * size).Take(size).AsNoTracking().ToList();
+
+            data.Total = query.Count();
+            data.Content = tagList;
+            data.Page = page;
+            data.Size = size;
+
+            return data;
         }
 
         public TagDto GetTagtById(int id)
         {
-            throw new NotImplementedException();
+            var tag = Context.Tags.AsNoTracking().FirstOrDefault(tag => tag.Id == id);
+
+            var tagDto = tag == null ? null : new TagDto
+            {
+                Id = tag.Id,
+                Code = tag.Code,
+                Name = tag.Name,
+                Active = tag.Active
+            };
+
+            return tagDto!;
         }
+
+        public TagDto CreateTag(TagDto tagDto, string userId)
+        {
+            DateTime currentTime = DateTime.Now;
+            Tag data = new Tag
+            {
+                Code = tagDto.Code,
+                Name = tagDto.Name,
+                Active = tagDto.Active,
+                CreatedDate = currentTime,
+                ModifiedDate = currentTime,
+                CreatedById = userId,
+                ModifiedById = userId
+            };
+
+            Context.Tags.Add(data);
+            Context.SaveChanges();
+
+            return tagDto;
+        }
+
+        public TagDto UpdateTag(TagDto tagDto, string userId)
+        {
+            DateTime currentTime = DateTime.Now;
+            var data = Context.Tags.FirstOrDefault(tag => tag.Id == tagDto.Id);
+
+            if (data != null)
+            {
+
+                data.Code = tagDto.Code;
+                data.Name = tagDto.Name;
+                data.Active = tagDto.Active;
+                data.CreatedDate = data.CreatedDate;
+                data.ModifiedDate = currentTime;
+                data.CreatedById = data.CreatedById;
+                data.ModifiedById = userId;
+
+                Context.Tags.Update(data);
+                Context.SaveChanges();
+            }
+
+            return tagDto;
+        }
+        public void DeleteTag(int id)
+        {
+            var query = Context.Tags.FirstOrDefault(tag => tag.Id == id);
+            Context.Tags.Remove(query!);
+            Context.SaveChanges();
+        }
+
 
         public bool IsHaveTag(int id)
         {
-            throw new NotImplementedException();
+            return Context.Tags.Where(tag => tag.Id == id).Count() > 0;
         }
 
-        public TagDto UpdateTag(TagDto tagDto, int userIdWhoTakeAction)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
