@@ -8,12 +8,11 @@
       width: width ? width : '100px',
       color: onSelected ? 'black' : ''
     }"
-    [ngClass]="{
-      focus: statusFocus,
-      'bg-[#F2F2F2] hover:border-font-disabled hover:border hover:bg-[#F2F2F2]':
-        disabled,
-      error: inputError
-    }"
+  [ngClass]="{
+    focus: statusFocus,
+    'bg-[#F2F2F2] hover:border-font-disabled hover:border hover:bg-[#F2F2F2]': disabled,
+    error: inputError
+  }"
     (click)="onFocus(!statusFocus)"
     class="flex justify-between items-center text-sm text-font-disabled border border-solid rounded-md border-font-disabled hover:bg-background hover:border-secondary hover:border-2 px-2 placeholder:text-font-disabled placeholder:text-sm"
     style="height: 44px"
@@ -47,4 +46,10 @@
       </div>
     </div>
   </div>
+  <div
+  *ngIf="inputError == true && errorMessage != undefined"
+  class="text-xs text-error pt-1"
+>
+  {{ errorMessage }}
+</div>
 </div>

@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -24,6 +25,7 @@ export class InputComponent implements OnChanges{
   @Input() width: string = '';
   @Input() label: string = '';
   @Input() type: string = 'text';
+  @Input() style: string = ''
   @Input() disabled: boolean = false;
   @Input() errorMessage: string | undefined;
   @Input() inputError: boolean = false;

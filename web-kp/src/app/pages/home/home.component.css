@@ -1,4 +1,27 @@
-.img-style{
- object-fit: cover;
- 
+.img-style {
+  object-fit: cover;
+}
+.to-top {
+  bottom: 0;
+  cursor: pointer;
+  margin: 0 8px 12px 0;
+  position: fixed;
+  right: 0;
+  opacity: 0;
+}
+
+.show-scrollTop {
+  opacity: 1 !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.bgContent3 {
+  background: linear-gradient(
+    180deg,
+    #008ecf 0%,
+    rgba(0, 142, 207, 0.3) 59.62%,
+    rgba(0, 142, 207, 0) 100%
+  );
+
+  height: 1000px;
 }

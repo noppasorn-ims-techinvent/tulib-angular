@@ -1,19 +1,14 @@
-<label  style="display: flex; align-items: center">
-   <input
-   class="border border-solid border-font-disabled "
-      [disabled]="disabled"
-      id="myCheckbox"
-      (input)="changeToggle($event)"
-      type="checkbox"
-      [checked]="inputChecked"
-    />  <label
-      class="label-input"
-      *ngIf="label != undefined"
-      [for]="inputId"
- 
-    >
-      {{ label }}
-    </label>
-   
+<label style="display: flex; align-items: start">
+  <input
+    class="border border-solid border-font-disabled"
+    style="margin-top: 3px;"
+    [disabled]="disabled"
+    id="myCheckbox"
+    (input)="changeToggle($event)"
+    type="checkbox"
+    [checked]="inputChecked"
+  />
+  <label class="text-sm ps-3" *ngIf="label != undefined" [for]="inputId" >
+    {{ label }}
   </label>
-  
+</label>

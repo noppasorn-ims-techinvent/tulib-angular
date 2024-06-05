@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Data
 {
-    public class ApiContext :IdentityDbContext<User>
+    public class ApiContext : IdentityDbContext<User>
     {
         public ApiContext(DbContextOptions<ApiContext> options) : base(options)
         {
@@ -12,7 +12,8 @@ namespace backend.Data
         }
 
         //List of tables here
-  
+        public DbSet<Tag> Tags { get; set; } = default!;
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

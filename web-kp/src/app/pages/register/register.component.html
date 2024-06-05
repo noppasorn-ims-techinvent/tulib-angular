@@ -7,32 +7,29 @@
       ลงทะเบียน
     </div>
     <div
-      class="h-auto drop-shadow-md bg-white rounded-lg grid grid-cols-1 divide-y"
-      style="padding-inline: 40px; padding-top: 20px; padding-bottom: 20px"
+     class="card grid grid-cols-1 divide-y"
     >
-      <div
-        class="font-bold text-optoin2-primary-variant text-lg"
-        style="padding-bottom: 20px"
-      >
-        กรุณากรอกข้อมูล
-      </div>
+   
       <div>
         <div
           class="flex justify-between"
           style="padding-top: 20px; padding-bottom: 20px"
         >
-          <app-dropdown
-            [required]="true"
-            [options]="options"
-            [label]="'คำนำหน้า'"
-            [placeholder]="'เลือก'"
-            [control]="getFormControlByKey('prefix')"
-          ></app-dropdown>
+        <app-dropdown
+        [required]="true"
+        [options]="options"
+        [label]="'คำนำหน้า'"
+        [placeholder]="'เลือก'"
+        [control]="getFormControlByKey('prefix')"
+        [inputError]="getFormControlByKey('prefix').invalid && getFormControlByKey('prefix').touched"
+        [errorMessage]="'กรุณาเลือกคำนำหน้า'"
+      ></app-dropdown>
+      
           <app-input
             [control]="getFormControlByKey('firstName')"
             [label]="'ชื่อ'"
             [placeholder]="'ชื่อ'"
-            [width]="'300px'"
+            [width]="'290px'"
             [inputError]="
               getFormControlByKey('firstName').invalid &&
               getFormControlByKey('firstName').touched
@@ -104,15 +101,13 @@
         </div>
         <div class="flex" style="padding-bottom: 20px">
           <app-checkbox
-            style="padding-top: 2px; margin-right: 8px"
+        
             (eventChangeToggle)="onChecked($event)"
             [inputChecked]="getFormControlByKey('allow').value"
+            [label]="'ข้าพเจ้าเข้าใจข้อกำหนด และเงื่อนไขในการเปิดเผยข้อมูลส่วนบุคคล และยินยอมเปิดเผยข้อมูลส่วนบุคคลของท่านเพื่อรับการบริการกับกลุ่มบริษัท หากมีข้อสงสัย สามารถเข้าดูข้อมูลเพิ่มเติมได้ทีนี่ นโยบายคุ้มครองส่วนบุคคล'"
           ></app-checkbox>
           <span class="text-sm"
-            >ข้าพเจ้าเข้าใจข้อกำหนด และเงื่อนไขในการเปิดเผยข้อมูลส่วนบุคคล
-            และยินยอมเปิดเผยข้อมูลส่วนบุคคลของท่านเพื่อรับการบริการกับกลุ่มบริษัท
-            หากมีข้อสงสัย สามารถเข้าดูข้อมูลเพิ่มเติมได้ทีนี่
-            นโยบายคุ้มครองส่วนบุคคล</span
+            ></span
           >
         </div>
         <div class="flex justify-center">

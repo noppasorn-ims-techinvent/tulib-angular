@@ -11,10 +11,7 @@
   >
     The sustainable development enhancing the beauty of nature.
   </div>
-  <div
-    class="bg-background flex justify-center"
-  
-  >
+  <div class="bg-background flex justify-center">
     <div class="grid grid-rows-2 grid-cols-3 gap-4 py-12">
       <div class="row-span-2">
         <img
@@ -46,4 +43,39 @@
       </div>
     </div>
   </div>
+</div>
+<div
+  class="flex justify-center items-center pt-20 pb-20 gap-24"
+  style="height: 400px"
+>
+  <div class="flex flex-col justify-center items-center">
+    <img src="assets/icons/photographer.svg" width="175" />
+    <div class="text-lg font-semibold text-primary-variant pt-5">
+      Over 1.2 million visitors to date
+    </div>
+  </div>
+  <div class="w-1 bg-primary-variant" style="height: 100%"></div>
+  <div class="flex flex-col justify-center items-center">
+    <img src="assets/icons/tulp-flower.svg" width="175" />
+    <div class="text-lg font-semibold text-primary-variant pt-5">
+      Flower around the world
+    </div>
+  </div>
+  <div class="w-1 bg-primary-variant" style="height: 100%"></div>
+  <div class="flex flex-col justify-center items-center">
+    <img src="assets/icons/map.svg" width="175" />
+    <div class="text-lg font-semibold text-primary-variant pt-5">
+      Landmark in Rayong
+    </div>
+  </div>
+</div>
+<div class="bgContent3">
+  <div>Exploration of new experiences.</div>
+</div>
+<div
+  class="to-top"
+  (click)="scrollToTop()"
+  [ngClass]="{ 'show-scrollTop': windowScrolled }"
+>
+  <img src="assets/icons/button-to-top.svg" alt="to-top-icon" />
 </div>

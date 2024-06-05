@@ -1,11 +1,11 @@
-<div class="">
+<div [ngClass]="style">
   <div class="text-font-title font-bold text-sm pb-1">
     <span> {{ label }}</span>
     <span *ngIf="required" class="text-xs text-red"> *</span>
   </div>
   <div
     [ngStyle]="{
-      width: width ? width : '400px'
+      width: width ? width : '100%'
     }"
      [ngClass]="{
       focus: statusFocus,

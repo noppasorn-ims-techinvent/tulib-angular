@@ -16,7 +16,7 @@
 }
 
 .menu-background {
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   left: 0;
   width: 100%; /* Ensure the menu spans the full width of the header */
@@ -25,7 +25,11 @@
   align-items: center;
   height: 50px; /* Set the initial height */
   transition: transform 0.3s; /* Add transition for all properties */
+  /* position: sticky; */
 }
+.menu-background.is-pinned {
+  color: red;
+} 
 .rectangle {
   background-color: white;
   height: 3px;

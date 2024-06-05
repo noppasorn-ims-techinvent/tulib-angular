@@ -43,7 +43,7 @@ namespace backend.Controllers
 
             var user = new User
             {
-                Prifix = registerDto.Prifix,
+                Prefix = registerDto.Prefix,
                 Email = registerDto.Email,
                 Firstname = registerDto.FirstName,
                 Lastname = registerDto.LastName,
@@ -142,7 +142,7 @@ namespace backend.Controllers
                 LastName = user.Lastname,
                 Telephone = user.Telephone,
                 Roles = [.. await _userManager.GetRolesAsync(user)],
-                Prifix = user.Prifix
+                Prefix = user.Prefix
             });
         }
 
@@ -160,7 +160,7 @@ namespace backend.Controllers
                 LastName = u.Lastname,
                 Telephone = u.Telephone,
                 Roles = _userManager.GetRolesAsync(u).Result.ToArray(),
-                Prifix = u.Prifix
+                Prefix = u.Prefix
             }).ToList();
 
             return Ok(usersDto);
