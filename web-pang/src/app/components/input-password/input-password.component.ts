@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -16,7 +16,7 @@ import {MatIconModule} from '@angular/material/icon';
 @Component({
   selector: 'app-input-password',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,MatIconModule,FormsModule],
+  imports: [FormsModule, ReactiveFormsModule,MatIconModule,NgIf],
   templateUrl: './input-password.component.html',
   styleUrl: './input-password.component.scss'
 })

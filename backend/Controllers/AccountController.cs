@@ -86,7 +86,6 @@ namespace backend.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
 
             if (user is null)

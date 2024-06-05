@@ -28,11 +28,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
-              }
+              "src/assets/image"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
@@ -40,12 +36,10 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/stylesheets",
-                "src/stylesheets/variable"
+                "src/stylesheets"
               ]
             },
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -112,12 +106,6 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/stylesheets",
-                "src/stylesheets/variable"
-              ]
-            },
             "scripts": []
           }
         }
