@@ -1,0 +1,61 @@
+<div>
+    <div class="text-font-title font-bold text-sm pb-1">
+        <span> {{ label }}</span>
+        <!-- <span *ngIf="required" class="text-xs text-red"> *</span> -->
+      </div>
+    <div
+      style="position: relative;height: 44px;;width: 400px;"
+      [ngClass]="[
+        
+        statusFocus ? 'focus' : '',
+        disabled ? 'disabled' : '',
+        inputError ? 'error' : ''
+      ]"
+     [ngStyle]="{ width: width ? width : '220px' }"
+      class="flex border border-solid border-font-disabled rounded-md hover:border-secondary hover:border-2 hover:bg-background px-2"
+    >
+      <!-- <div *ngIf="inputIconPath" class="icon-style">
+        <img [src]="inputIconPath" alt="" />
+      </div> -->
+      <input
+        (focus)="actionFocusInput()"
+        (blur)="actionLostFocusInput()"
+        [formControl]="control"
+        [placeholder]="placeHolder"
+        (input)="textChange()"
+        style="width: 100%;"
+        class=" placeholder:text-sm"
+      />
+      <div class="icon-style">
+        <img src="assets/icons/calendar-blue.svg" alt="" />
+      </div>
+      <!-- <div
+        (click)="clearInput()"
+        *ngIf="statusShowCloseIcon"
+        class="icon-close-style"
+      >
+        <img src="assets/icons/close-grey.svg" alt="" />
+      </div> -->
+      <div class="input-group">
+        <input
+        (change)="selectedDate()"
+        [formControl]="selectDateFrom"
+        class="input-date"
+        style="height: 100%;"
+        type="date"
+        ngbDatepicker
+        #d="ngbDatepicker"
+      />
+        <button class="btn btn-outline-secondary bi bi-calendar3" style="height: 44px;" (click)="d.toggle()" type="button"></button>
+    </div>
+    
+    </div>
+    <small
+      *ngIf="inputError == true && errorMessage != undefined"
+      class="errorMessage"
+    >
+      {{ errorMessage }}
+    </small>
+  
+  </div>
+  

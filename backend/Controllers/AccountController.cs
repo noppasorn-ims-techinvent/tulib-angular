@@ -166,6 +166,63 @@ namespace backend.Controllers
             return Ok(usersDto);
         }
 
+        [Authorize]
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateUserDetail([FromBody] UserDetailDto updateUserDto)
+        {
+            if (updateUserDto == null)
+            {
+                return BadRequest("Invalid request body.");
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(currentUserId!);
+
+            if (user is null)
+            {
+                return NotFound("User not found.");
+            }
+
+            // Update user properties with the values from updateUserDto
+            if (updateUserDto.FirstName != null)
+            {
+                user.Firstname = updateUserDto.FirstName;
+            }
+            if (updateUserDto.LastName != null)
+            {
+                user.Lastname = updateUserDto.LastName;
+            }
+            if (updateUserDto.Telephone != null)
+            {
+                user.Telephone = updateUserDto.Telephone;
+            }
+            if (updateUserDto.Prefix != null)
+            {
+                user.Prefix = updateUserDto.Prefix;
+            }
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                var newToken = _jwtService.GenerateToken(user);
+                Response.Headers.Add("Authorization", $"Bearer {newToken}");
+                return Ok(new AuthResponseDto
+                {
+                    isSuccess = true,
+                    Message = "User details updated successfully.",
+                       Token = newToken
+                });
+            }
+
+            return Ok(new AuthResponseDto
+            {
+                isSuccess = true,
+                Message = "Failed to update user details."
+
+            });
+        }
+
         [HttpDelete("{id}")]
         [Authorize]
         public async Task<IActionResult> DeleteAccount(string id)

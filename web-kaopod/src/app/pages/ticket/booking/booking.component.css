@@ -1,0 +1,124 @@
+
+.primary-input{
+    height: 32px;
+    border-radius: 100px;
+    border: 1px solid #DFDFDF;
+    background-color:#FFF;
+    font-size: 14px;
+    input{
+      background: none;
+      border: none;
+      height: inherit;
+      &:focus{
+        box-shadow: none;
+      }
+  
+      &::placeholder {
+        color: #BDBDBD !important;
+        font-size: 14px;
+      }
+    }
+  
+  
+    &.focus{
+      border: 1px solid #008ECF;
+    }
+  
+    &:hover{
+      background-color: #F3FAFF;
+    }
+  
+    &.disabled{
+      color: #BDBDBD;
+      border: 1px solid #BDBDBD;
+      background: #F2F2F2;
+      pointer-events: none;
+    }
+  
+    &.error{
+      border: 1px solid #B20000;
+    }
+  }
+  
+  .icon-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    height: 24px;
+  }
+  
+  .icon-close-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(87%) sepia(0%) saturate(294%) hue-rotate(220deg) brightness(89%) contrast(90%);
+  }
+  
+  .input-date{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    opacity: 0;
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+  }
+  
+  .errorMessage {
+    color: #B20000;
+    font-size: 12px;
+  }
+  
+  .label-input{
+    font-weight: bold;
+  }
+  
+  .label-left {
+    display: flex;
+    align-items: center;
+    margin: 10px 10px 10px 10px;
+  }
+  
+  .see-details {
+    height: 32px;
+    border: none;
+    background-color: #FFF;
+    font-size: 14px;
+  
+    input {
+      padding-top: 3px;
+      background: none;
+      border: none;
+  
+      &:focus {
+        box-shadow: none;
+      }
+  
+      &::placeholder {
+        color: #BDBDBD !important;
+        font-size: 14px;
+        font-weight: 400;
+      }
+  
+      &:hover::placeholder {
+        color: #212121
+      }
+    }
+  }
+  

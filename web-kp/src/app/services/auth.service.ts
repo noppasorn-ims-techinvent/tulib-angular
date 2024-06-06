@@ -31,7 +31,7 @@ export class AuthService {
         })
       );
   }
-  private getToken = (): string | null => {
+  getToken = (): string | null => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem(this.tokerKey) || '';
     } else {
@@ -110,14 +110,9 @@ export class AuthService {
         })
       );
   }
-
-  getDetail() : Observable<UserDetail>{
-    return this.http.get<UserDetail>(`${this.apiUrl}Account/detail`).pipe( map((response) => {
-      if (response) {
-      console.log(response);
-      
-      }
-      return response;
-    }))
-  }
+update(data : UserDetail): Observable<AuthResponse>{
+  return this.http.put<AuthResponse>(`${this.apiUrl}Account/update`,data)
+}
+  getDetail = (): Observable<UserDetail> =>
+    this.http.get<UserDetail>(`${this.apiUrl}Account/detail`);
 }

@@ -1,0 +1,5 @@
+.circle{
+    width: 8px; /* Set the width and height to create a perfect circle */
+    height: 8px;
+    border-radius: 100%;
+}

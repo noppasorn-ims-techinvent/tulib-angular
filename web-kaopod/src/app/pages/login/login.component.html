@@ -1,0 +1,53 @@
+<div class="loginPage">
+  <div style="width: 30%">
+    <div class="card grid grid-cols-1 divide-y" style="padding-inline: 80px">
+      <div
+        class="font-bold text-optoin2-primary-variant text-lg text-center"
+        style="padding-bottom: 20px"
+      >
+        เข้าสู่ระบบ
+      </div>
+      <div class="flex justify-center flex-col items-center " style="width: 100%;">
+        
+          <app-input
+            [control]="getFormControlByKey('email')"
+            [label]="'อีเมล'"
+            [placeholder]="'อีเมล'"
+            [inputError]="
+              getFormControlByKey('email').invalid &&
+              getFormControlByKey('email').touched
+            "
+            [errorMessage]="'กรุณากรอกข้อมูล'"
+            [required]="true"
+            [style]="'pt-8 pb-8'"
+            style="width: 100%;"
+          ></app-input>
+        
+        
+          <app-input-password
+            [control]="getFormControlByKey('password')"
+            [label]="'รหัสผ่าน'"
+            [placeholder]="'รหัสผ่าน'"
+            [inputError]="
+              getFormControlByKey('password').invalid &&
+              getFormControlByKey('password').touched
+            "
+            [errorMessage]="'กรุณากรอกข้อมูล'"
+            [required]="true"
+            style="width: 100%;"
+          ></app-input-password>
+    
+
+        
+          <app-button
+            (eventActionClick)="onSubmit()"
+            [text]="'เข้าสู่ระบบ'"
+            [disabled]="form.invalid"
+            [style]="'mt-10 mb-4'"
+            
+          ></app-button>
+        
+      </div>
+    </div>
+  </div>
+</div>

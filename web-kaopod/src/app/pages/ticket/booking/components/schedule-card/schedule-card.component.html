@@ -1,0 +1,27 @@
+<div
+  class="bg-background rounded-full py-1 px-2"
+  style="height: 45px; width: 140px"
+>
+  <div
+    class="flex text-sm text-optoin2-primary-variant justify-center items-center"
+    style="height: 100%;"
+  >
+    <div class="circle bg-black">
+      <!-- {{ data.status }} -->
+    </div>
+    <div class="flex flex-col ms-2 justify-center items-center">
+      <div class="flex">
+        <div>
+          {{ data.startTime | date : "hh:mm" }}
+        </div>
+        <div class="px-px">-</div>
+        <div>
+          {{ data.endTime | date : "hh:mm" }}
+        </div>
+      </div>
+      <!-- <div>
+        {{ data.remain }}
+      </div> -->
+    </div>
+  </div>
+</div>

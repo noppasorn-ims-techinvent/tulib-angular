@@ -1,0 +1,20 @@
+.input-date {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    opacity: 0;
+    padding-inline: 10px;
+    
+   
+}
+.icon-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   height: 100%;
+
+  }

@@ -1,0 +1,17 @@
+<div class="py-3">
+  <div class="flex justify-between" style="width: 100%">
+    <div>
+      <app-date-picker
+        [label]="'วันที่ต้องการเข้าชม'"
+        [control]="selectedDate"
+      ></app-date-picker>
+      <div class="pt-5">
+        <app-schedule-list></app-schedule-list>
+      </div>
+      <div>
+        <app-ticket-list></app-ticket-list>
+      </div>
+    </div>
+    <div><app-cart-list></app-cart-list></div>
+  </div>
+</div>
