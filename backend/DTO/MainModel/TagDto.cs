@@ -12,6 +12,8 @@ namespace backend.DTO.MainModel
         public string Name { get; set; } = string.Empty;
         public string Code { get; set; } = string.Empty;
         public bool Active { get; set; }
+        public string ?  CreatedBy { get; set; } 
+        public string ?  ModifiedBy { get; set; } 
 
     }
 }

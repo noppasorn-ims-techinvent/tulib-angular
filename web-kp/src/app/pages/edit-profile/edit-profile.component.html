@@ -1,0 +1,73 @@
+<div class="content flex justify-center">
+  <div style="width: 50%">
+    <div
+      class="font-bold text-optoin2-primary-variant text-lg"
+      style="padding-bottom: 20px"
+    >
+      ลงทะเบียน
+    </div>
+    <div class="card grid grid-cols-1 divide-y">
+      <div>
+        <div
+          class="flex justify-between"
+          style="padding-top: 20px; padding-bottom: 20px"
+        >
+          <app-dropdown
+            [required]="true"
+            [options]="options"
+            [label]="'คำนำหน้า'"
+            [placeholder]="'เลือก'"
+            [control]="getFormControlByKey('prefix')"
+            [inputError]="
+              getFormControlByKey('prefix').invalid &&
+              getFormControlByKey('prefix').touched
+            "
+            [errorMessage]="'กรุณาเลือกคำนำหน้า'"
+          ></app-dropdown>
+
+          <app-input
+            [control]="getFormControlByKey('firstName')"
+            [label]="'ชื่อ'"
+            [placeholder]="'ชื่อ'"
+            [width]="'290px'"
+            [inputError]="
+              getFormControlByKey('firstName').invalid &&
+              getFormControlByKey('firstName').touched
+            "
+            [errorMessage]="'กรุณากรอกข้อมูล'"
+            [required]="true"
+          ></app-input>
+          <app-input
+            [control]="getFormControlByKey('lastName')"
+            [label]="'นามสกุล'"
+            [placeholder]="'นามสกุล'"
+            [width]="'425px'"
+            [inputError]="
+              getFormControlByKey('lastName').invalid &&
+              getFormControlByKey('lastName').touched
+            "
+            [errorMessage]="'กรุณากรอกข้อมูล'"
+            [required]="true"
+          ></app-input>
+        </div>
+        <div class="flex justify-between" style="padding-bottom: 20px">
+          <app-input
+            [control]="getFormControlByKey('telephone')"
+            [label]="'เบอร์โทรศัพท์'"
+            [placeholder]="'เบอร์โทรศัพท์'"
+            [width]="'425px'"
+          ></app-input>
+          <div></div>
+        </div>
+
+        <div class="flex justify-center">
+          <app-button
+            (eventActionClick)="onSubmit()"
+            [text]="'ลงทะเบียน'"
+            [disabled]="form.invalid"
+          ></app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

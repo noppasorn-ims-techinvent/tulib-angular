@@ -73,11 +73,13 @@ export class TopBarComponent implements OnInit {
       ) {
         this.showMenu = false;
       }
-      if (
-        e.target !== this.toggleUserButton!.nativeElement &&
-        e.target !== this.userMenu!.nativeElement
-      ) {
-        this.toggleUserMenu(false);
+      if (this.authService.getUserDetail() != null) {
+        if (
+          e.target !== this.toggleUserButton!.nativeElement &&
+          e.target !== this.userMenu!.nativeElement
+        ) {
+          this.toggleUserMenu(false);
+        }
       }
     });
   }
@@ -99,8 +101,6 @@ export class TopBarComponent implements OnInit {
     // });
   }
 
-
-  
   isLoggedin() {
     return this.authService.isLoggrdIn();
   }
@@ -179,6 +179,4 @@ export class TopBarComponent implements OnInit {
   changeImage(newImage: string) {
     this.defaultImage = newImage;
   }
-
-  
 }

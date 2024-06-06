@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Option } from '../../interface/base/option';
+import { DropDownOption } from '../../interface/base/option';
 import { log } from 'console';
 
 @Component({
@@ -23,7 +23,7 @@ export class DropdownComponent {
   @Input() required: boolean = false;
   @Input() control = new FormControl();
   @Input() disabled: boolean = false;
-  @Input() options: Option[] | undefined;
+  @Input() options: DropDownOption[] | undefined;
 
   selectKey: string | undefined;
   statusFocus: boolean = false;

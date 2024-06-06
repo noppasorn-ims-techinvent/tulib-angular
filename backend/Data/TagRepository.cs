@@ -37,7 +37,9 @@ namespace backend.Data
                         Id = tag.Id,
                         Code = tag.Code,
                         Name = tag.Name,
-                        Active = tag.Active
+                        Active = tag.Active,
+                        CreatedBy = tag.CreatedBy.Firstname,
+                        ModifiedBy = tag.ModifiedBy.Firstname
                     }
             ).Skip((page - 1) * size).Take(size).AsNoTracking().ToList();
 
@@ -58,7 +60,10 @@ namespace backend.Data
                 Id = tag.Id,
                 Code = tag.Code,
                 Name = tag.Name,
-                Active = tag.Active
+                Active = tag.Active,
+                CreatedBy = tag.CreatedBy.Firstname,
+                ModifiedBy = tag.ModifiedBy.Firstname
+
             };
 
             return tagDto!;

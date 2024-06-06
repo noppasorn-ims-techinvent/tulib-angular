@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { RegisterRequest } from '../interface/auth/register-request';
 import Swal from 'sweetalert2';
 import { jwtDecode } from 'jwt-decode';
+import { UserDetail } from '../interface/auth/user-detail';
 
 @Injectable({
   providedIn: 'root',
@@ -108,5 +109,15 @@ export class AuthService {
           return response;
         })
       );
+  }
+
+  getDetail() : Observable<UserDetail>{
+    return this.http.get<UserDetail>(`${this.apiUrl}Account/detail`).pipe( map((response) => {
+      if (response) {
+      console.log(response);
+      
+      }
+      return response;
+    }))
   }
 }

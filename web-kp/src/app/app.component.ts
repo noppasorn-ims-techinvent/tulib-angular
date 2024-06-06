@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    EditProfileComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

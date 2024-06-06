@@ -12,11 +12,12 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { CheckboxComponent } from '../../components/checkbox/checkbox.component';
 import { InputPasswordComponent } from '../../components/input-password/input-password.component';
 import { DropdownComponent } from '../../components/dropdown/dropdown.component';
-import { Option } from '../../interface/base/option';
+import { DropDownOption } from '../../interface/base/option';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { PrefixOption } from '../../../constant/dropdown';
 
 @Component({
   selector: 'app-register',
@@ -39,20 +40,7 @@ export class RegisterComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
 
-  options: Option[] = [
-    {
-      text: 'นางสาว',
-      value: 'นางสาว',
-    },
-    {
-      text: 'นาง',
-      value: 'นาง',
-    },
-    {
-      text: 'นาย',
-      value: 'นาย',
-    },
-  ];
+  options: DropDownOption[] = [];
   constructor(
     private appState: AppState,
     private authService: AuthService,
@@ -61,6 +49,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.appState.setPageCurrent('register');
+
+    this.options = PrefixOption;
     // this.appState
     //   .getHeaderHeightCurrent()
     //   .subscribe((h) => (this.topBarHeight = h));
@@ -69,7 +59,10 @@ export class RegisterComponent implements OnInit {
       firstName: new FormControl<string>('', Validators.required),
       lastName: new FormControl<string>('', Validators.required),
       telephone: new FormControl<string>(''),
-      email: new FormControl<string>('', [Validators.required,Validators.email]),
+      email: new FormControl<string>('', [
+        Validators.required,
+        Validators.email,
+      ]),
       password: new FormControl<string>('', Validators.required),
       confirmPassword: new FormControl<string>('', [
         Validators.required,

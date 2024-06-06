@@ -22,7 +22,7 @@
   width: 100%; /* Ensure the menu spans the full width of the header */
   display: flex;
   justify-content: start;
-  align-items: center;
+  align-items: start;
   height: 50px; /* Set the initial height */
   transition: transform 0.3s; /* Add transition for all properties */
   /* position: sticky; */
