@@ -19,7 +19,7 @@ namespace backend.Dtos
         public string LastName { get; set; } = string.Empty;
         
         [Required]
-        public string Prifix { get; set; } = string.Empty;
+        public string Prefix { get; set; } = string.Empty;
 
         public string Password { get; set; } = string.Empty;
 

@@ -1,0 +1,7 @@
+.box{
+    /* position: absolute; */
+    width: 100%; /* Ensure the menu spans the full width of the header */
+    transition:  all 0.3s;
+    /* height: 100%; */
+    /* margin: 40px 20px 20px 20px; */
+  }

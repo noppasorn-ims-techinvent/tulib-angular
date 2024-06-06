@@ -1,0 +1,197 @@
+<nav class="header-background" [ngStyle]="{ height: topBarHeight + 'px' }">
+  <div
+    [ngStyle]="{
+      'height.px': currentPage === 'home' ? 400 : 150,
+      width: '100%',
+      
+    }"
+    class="flex justify-between"
+  >
+    <a href="" class="">
+      <img src="../../assets/icons/logo.svg" class="h-8" alt="Flowbite Logo" />
+    </a>
+    <div class="text-white">
+      <div *ngIf="!isLoggedin()" class="flex items-center">
+        <a class="font-normal md:hover:underline" [routerLink]="'/login'">
+          เข้าสู่ระบบ</a
+        >
+        <span class="mx-4 w-px bg-white h-4"></span>
+        <a class="font-light md:hover:underline" [routerLink]="'/register'"
+          >ลงทะเบียน</a
+        >
+      </div>
+      <div *ngIf="isLoggedin()" class="text-white">
+        <div
+          *ngIf="authService.getUserDetail() as userDetail"
+          class="flex items-center"
+        >
+          <div class="flex relative">
+            <span class="font-normal md:hover:underline">
+              {{ userDetail.name }}
+            </span>
+
+            <img
+              #toggleUserButton
+              (mouseover)="
+                changeImage('assets/icons/dot-tree-vertical-focus.svg')
+              "
+              (mouseout)="
+                showUserMenu
+                  ? changeImage('assets/icons/dot-tree-vertical-focus.svg')
+                  : changeImage('assets/icons/dot-tree-vertical.svg')
+              "
+              (click)="toggleUserMenu()"
+              [src]="defaultImage"
+              alt=""
+              class="mx-2 cursor-pointer"
+            />
+
+            <div
+              id="dropdownUserNavbar"
+              data-dropdown-toggle="dropdownUserNavbar"
+              class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-sm shadow-md absolute text-font-title w-36 flex-row-reverse right-2 top-7"
+              [ngClass]="{ hidden: !showUserMenu, flex: showUserMenu }"
+              appOutsideClick
+              (appOutsideClick)="toggleUserMenu()"
+              #userMenu
+            >
+              <ul
+                class="text-sm"
+                style="width: 100%"
+                aria-labelledby="dropdownLargeButton"
+              >
+                <li style="width: 100%">
+                  <div
+                    [routerLink]="'/edit-profile'"
+                    style="height: 48px; width: 100%"
+                    class="flex items-center px-2 hover:bg-background hover:text-optoin2-primary-variant"
+                  >
+                    <a class="" aria-current="page">แก้ไขข้อมูล</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <span class="me-3 w-px bg-white h-4"></span>
+
+          <a class="font-light md:hover:underline" (click)="logout()"
+            >ออกจากระบบ</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+  <div
+    style="padding-inline: 20px"
+    class="menu-background bg-primary opacity-75"
+    id="navbar-default"
+ 
+  >
+    <ul class="font-medium flex gap-20">
+      <li class="">
+        <div
+          [routerLink]="'/home'"
+          style="height: 47px"
+          class="flex items-center"
+          (mouseenter)="togglePointer(1)"
+          (mouseleave)="togglePointer(0)"
+        >
+          <a class="text-white" aria-current="page">หน้าแรก</a>
+        </div>
+        <div
+          class="rectangle"
+          *ngIf="currentPage === 'home' || showPointer === 1"
+        ></div>
+      </li>
+
+      <li>
+        <div
+          [routerLink]="'/'"
+          style="height: 47px"
+          class="flex items-center"
+          (mouseenter)="togglePointer(2)"
+          (mouseleave)="togglePointer(0)"
+        >
+          <a class="text-white" aria-current="page">PR News</a>
+        </div>
+        <div
+          class="rectangle"
+          *ngIf="currentPage === 'prnews' || showPointer === 2"
+        ></div>
+      </li>
+      <li>
+        <button
+          #toggleButton
+          id="dropdownNavbarLink"
+          data-dropdown-toggle="dropdownNavbar"
+          class="flex items-center justify-between w-full text-white"
+          style="height: 47px"
+          (click)="toggleNavbar()"
+          (mouseenter)="togglePointer(3)"
+          (mouseleave)="togglePointer(0)"
+        >
+          บัตร
+          <img
+            [src]="
+              showMenu
+                ? 'assets/icons/arrow-up-white.svg'
+                : 'assets/icons/arrow-down-white.svg'
+            "
+            alt=""
+            class="mx-2"
+          />
+        </button>
+
+        <div class="rectangle" *ngIf="showPointer === 3 || showMenu"></div>
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownNavbar"
+          class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-sm shadow absolute text-font-title w-48"
+          [ngClass]="{ hidden: !showMenu, flex: showMenu }"
+          appOutsideClick
+          (appOutsideClick)="toggleNavbar()"
+          #menu
+        >
+          <ul
+            class="text-sm"
+            style="width: 100%"
+            aria-labelledby="dropdownLargeButton"
+          >
+            <li style="width: 100%">
+              <div
+                [routerLink]="'/home'"
+                style="height: 48px; width: 100%"
+                class="flex items-center px-2 hover:bg-background hover:text-optoin2-primary-variant"
+              >
+                <a class="" aria-current="page">เลือกซื้อบัตร</a>
+              </div>
+            </li>
+            <li style="width: 100%">
+              <div
+                [routerLink]="'/home'"
+                style="height: 48px; width: 100%"
+                class="flex items-center px-2 hover:bg-background hover:text-optoin2-primary-variant"
+              >
+                <a aria-current="page">รับบัตรเข้าชมผ่านอีเมล</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div
+          [routerLink]="'/home'"
+          style="height: 47px"
+          class="flex items-center"
+          (mouseenter)="togglePointer(4)"
+          (mouseleave)="togglePointer(0)"
+        >
+          <a class="text-white" aria-current="page">ติดต่อเรา</a>
+        </div>
+        <div class="rectangle" *ngIf="showPointer === 4"></div>
+      </li>
+    </ul>
+  </div>
+

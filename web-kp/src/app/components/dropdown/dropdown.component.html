@@ -1,0 +1,55 @@
+<div class="dropdown">
+  <div class="text-font-title font-bold text-sm pb-1">
+    <span> {{ label }}</span>
+    <span *ngIf="required" class="text-xs text-red"> *</span>
+  </div>
+  <div
+    [ngStyle]="{
+      width: width ? width : '100px',
+      color: onSelected ? 'black' : ''
+    }"
+  [ngClass]="{
+    focus: statusFocus,
+    'bg-[#F2F2F2] hover:border-font-disabled hover:border hover:bg-[#F2F2F2]': disabled,
+    error: inputError
+  }"
+    (click)="onFocus(!statusFocus)"
+    class="flex justify-between items-center text-sm text-font-disabled border border-solid rounded-md border-font-disabled hover:bg-background hover:border-secondary hover:border-2 px-2 placeholder:text-font-disabled placeholder:text-sm"
+    style="height: 44px"
+  >
+    {{ placeholder }}
+
+    <img
+      [src]="
+        statusFocus
+          ? 'assets/icons/arrow-up.svg'
+          : 'assets/icons/arrow-down.svg'
+      "
+      alt=""
+    />
+  </div>
+  <div
+    *ngIf="statusFocus"
+    class="absolute z-10 border border-solid border-font-disabled truncate rounded-md"
+    [ngStyle]="{
+      width: width ? width : '100px'
+    }"
+    aria-labelledby="dropdownMenuButton"
+  >
+    <div class="bg-white">
+      <div
+        class="px-2 py-1.5 text-black hover:bg-background"
+        *ngFor="let option of options"
+        (click)="selectItem(option)"
+      >
+        {{ option.text }}
+      </div>
+    </div>
+  </div>
+  <div
+  *ngIf="inputError == true && errorMessage != undefined"
+  class="text-xs text-error pt-1"
+>
+  {{ errorMessage }}
+</div>
+</div>

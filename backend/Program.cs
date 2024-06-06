@@ -1,7 +1,9 @@
 using System.Globalization;
 using System.Text; // ใช้สำหรับการเข้ารหัสข้อความ
 using backend.Data; // ใช้สำหรับการเชื่อมต่อข้อมูลในโปรเจค
+using backend.Data.Interface;
 using backend.Models; // ใช้สำหรับโมเดลในโปรเจค
+using backend.Services.Interface;
 using backend.Utilities;
 using backend.Utilities.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer; // ใช้สำหรับการรับรองตัวตนแบบ JWT
@@ -63,10 +65,12 @@ try
 
     #region Services
     services.AddTransient<IJwtService, JwtService>();
+    services.AddTransient<ITagService, TagService>();
     #endregion
 
     #region Repositories
     // services.AddTransient<IUserRepository, UserRepository>();
+    services.AddTransient<ITagRepository, TagRepository>();
     #endregion
 
     #endregion

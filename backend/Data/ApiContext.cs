@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Data
 {
-    public class ApiContext :IdentityDbContext<User>
+    public class ApiContext : IdentityDbContext<User>
     {
         public ApiContext(DbContextOptions<ApiContext> options) : base(options)
         {
@@ -12,8 +12,8 @@ namespace backend.Data
         }
 
         //List of tables here
-        //  public DbSet<test> tests { get; set; } = default!;
-  
+        public DbSet<Tag> Tags { get; set; } = default!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -26,6 +26,16 @@ namespace backend.Data
             //     .HasOne(a => a.ModifiedBy)
             //     .WithMany()
             //     .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Tag>()
+                .HasOne(t => t.CreatedBy)
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Tag>()
+                .HasOne(t => t.ModifiedBy)
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

@@ -13,6 +13,6 @@ namespace backend.Dtos
         public string? LastName { get; set; }
         public string? Telephone { get; set; }
         public string[]? Roles { get; set; }
-        public string? Prifix { get; set; }
+        public string? Prefix { get; set; }
     }
 }

@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+  
+
+* {
+    font-family: "Kanit", sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default padding */
+  }
+.content {
+    padding-top: 40px ;
+    /* width: 100vw; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.icon-style{
+    height: 24px;
+}
+
+input{
+    background-color: transparent;
+}
+
+li :hover{
+    cursor: pointer;
+}
+.card {
+    height: auto;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    display: grid;
+
+    border-top-width: 1px;
+    border-color: #e5e7eb;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

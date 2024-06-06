@@ -1,0 +1,123 @@
+<div class="content flex justify-center">
+  <div style="width: 50%">
+    <div
+      class="font-bold text-optoin2-primary-variant text-lg"
+      style="padding-bottom: 20px"
+    >
+      ลงทะเบียน
+    </div>
+    <div
+     class="card grid grid-cols-1 divide-y"
+    >
+   
+      <div>
+        <div
+          class="flex justify-between"
+          style="padding-top: 20px; padding-bottom: 20px"
+        >
+        <app-dropdown
+        [required]="true"
+        [options]="options"
+        [label]="'คำนำหน้า'"
+        [placeholder]="'เลือก'"
+        [control]="getFormControlByKey('prefix')"
+        [inputError]="getFormControlByKey('prefix').invalid && getFormControlByKey('prefix').touched"
+        [errorMessage]="'กรุณาเลือกคำนำหน้า'"
+      ></app-dropdown>
+      
+          <app-input
+            [control]="getFormControlByKey('firstName')"
+            [label]="'ชื่อ'"
+            [placeholder]="'ชื่อ'"
+            [width]="'290px'"
+            [inputError]="
+              getFormControlByKey('firstName').invalid &&
+              getFormControlByKey('firstName').touched
+            "
+            [errorMessage]="'กรุณากรอกข้อมูล'"
+            [required]="true"
+          ></app-input>
+          <app-input
+            [control]="getFormControlByKey('lastName')"
+            [label]="'นามสกุล'"
+            [placeholder]="'นามสกุล'"
+            [width]="'425px'"
+            [inputError]="
+              getFormControlByKey('lastName').invalid &&
+              getFormControlByKey('lastName').touched
+            "
+            [errorMessage]="'กรุณากรอกข้อมูล'"
+            [required]="true"
+          ></app-input>
+        </div>
+        <div class="flex justify-between" style="padding-bottom: 20px">
+          <app-input
+            [control]="getFormControlByKey('telephone')"
+            [label]="'เบอร์โทรศัพท์'"
+            [placeholder]="'เบอร์โทรศัพท์'"
+            [width]="'425px'"
+          ></app-input>
+          <app-input
+            [control]="getFormControlByKey('email')"
+            [label]="'อีเมล'"
+            [placeholder]="'อีเมล'"
+            [width]="'425px'"
+            [inputError]="
+              getFormControlByKey('email').invalid &&
+              getFormControlByKey('email').touched
+            "
+            [errorMessage]="'กรุณากรอกข้อมูล'"
+            [required]="true"
+          ></app-input>
+        </div>
+        <div class="flex justify-between" style="padding-bottom: 20px">
+          <app-input-password
+            [control]="getFormControlByKey('password')"
+            [label]="'รหัสผ่าน'"
+            [placeholder]="'รหัสผ่าน'"
+            [width]="'425px'"
+            [inputError]="
+              getFormControlByKey('password').invalid &&
+              getFormControlByKey('password').touched
+            "
+            [type]="'password'"
+            [errorMessage]="'กรุณากรอกข้อมูล'"
+            [required]="true"
+          ></app-input-password>
+          <app-input-password
+          [control]="getFormControlByKey('confirmPassword')"
+          [label]="'ยืนยันรหัสผ่าน'"
+          [placeholder]="'ยืนยันรหัสผ่าน'"
+          [width]="'425px'"
+          [inputError]="
+            getFormControlByKey('confirmPassword').invalid &&
+            getFormControlByKey('confirmPassword').touched
+          "
+          [type]="'password'"
+          [errorMessage]="
+            getFormControlByKey('confirmPassword').errors?.['confirmPasswordEmpty'] ? 'กรุณายืนยันรหัสผ่าน' : 'รหัสผ่านไม่ตรงกัน'"
+          [required]="true"
+        ></app-input-password>
+        </div>
+        <div class="flex" style="padding-bottom: 20px">
+          <app-checkbox
+        
+            (eventChangeToggle)="onChecked($event)"
+            [inputChecked]="getFormControlByKey('allow').value"
+            [label]="'ข้าพเจ้าเข้าใจข้อกำหนด และเงื่อนไขในการเปิดเผยข้อมูลส่วนบุคคล และยินยอมเปิดเผยข้อมูลส่วนบุคคลของท่านเพื่อรับการบริการกับกลุ่มบริษัท หากมีข้อสงสัย สามารถเข้าดูข้อมูลเพิ่มเติมได้ทีนี่ นโยบายคุ้มครองส่วนบุคคล'"
+          ></app-checkbox>
+          <span class="text-sm"
+            ></span
+          >
+        </div>
+        <div class="flex justify-center">
+          <app-button
+            (eventActionClick)="onSubmit()"
+            [text]="'ลงทะเบียน'"
+            [disabled]="form.invalid"
+          ></app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
