@@ -12,16 +12,17 @@ namespace backend.Data
         }
 
         //List of tables here
+        //  public DbSet<test> tests { get; set; } = default!;
   
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // modelBuilder.Entity<User>()
+            // modelBuilder.Entity<test>()
             //     .HasOne(a => a.CreatedBy)
             //     .WithMany()
             //     .OnDelete(DeleteBehavior.NoAction);
-            // modelBuilder.Entity<User>()
+            // modelBuilder.Entity<test>()
             //     .HasOne(a => a.ModifiedBy)
             //     .WithMany()
             //     .OnDelete(DeleteBehavior.NoAction);

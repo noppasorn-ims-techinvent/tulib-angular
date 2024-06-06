@@ -41,6 +41,21 @@ export class AuthService {
     return userDetail;
   }
 
+  hasRole(role: string): boolean {
+    const token = this.getToken();
+    if (!token) return false;
+
+    try {
+      const decodedToken: any = jwtDecode(token);
+      const userRoles = decodedToken.role || [];
+
+      return userRoles.includes(role);
+    } catch (error) {
+      console.error('Error decoding token', error);
+      return false;
+    }
+  }
+
   isLoggedIn=(): boolean =>{
     const token = this.getToken();
     if(!token) return false;
