@@ -16,7 +16,6 @@ export class TicketComponent implements OnInit{
   }
   ngOnInit(): void {
     this.appState.setPageCurrent('ticket');
-
   }
 
 }

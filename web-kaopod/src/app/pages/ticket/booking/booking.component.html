@@ -1,17 +1,48 @@
-<div class="py-3">
+<!-- <div class="py-3">
   <div class="flex justify-between" style="width: 100%">
-    <div>
+    <div class=" w-4/5">
       <app-date-picker
         [label]="'วันที่ต้องการเข้าชม'"
         [control]="selectedDate"
       ></app-date-picker>
-      <div class="pt-5">
+      <div  class="py-5 border-b" style="width: 100%;">
         <app-schedule-list></app-schedule-list>
       </div>
-      <div>
+      <div *ngIf="selectedSchedule">
         <app-ticket-list></app-ticket-list>
       </div>
     </div>
     <div><app-cart-list></app-cart-list></div>
+  </div>
+</div> -->
+
+<div class="py-2">
+  <div class="flex justify-between gap-6" style="width: 100%">
+    <div class="w-8/12">
+      <div class=" flex justify-between items-center">
+        <app-date-picker
+          [label]="'วันที่ต้องการเข้าชม'"
+          [control]="selectedDate"
+        ></app-date-picker>
+        <div class="text-optoin2-primary-variant text-sm flex mt-5">
+          <div class="flex justify-between items-center me-4">
+            <div class="circle bg-green-600"></div>
+            <div class="ms-2">มีที่ว่าง</div>
+          </div>
+          <div class="flex justify-between items-center">
+            <div class="circle bg-yellow-500"></div>
+            <div class="ms-2">ที่ว่างเหลือน้อย</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="selectedDate.value" class="py-5 border-b" style="width: 100%">
+        <app-schedule-list></app-schedule-list>
+      </div>
+      <div *ngIf="selectedSchedule" class="py-6">
+        <app-ticket-list></app-ticket-list>
+      </div>
+    </div>
+    <div class="w-4/12"><app-cart-list></app-cart-list></div>
   </div>
 </div>

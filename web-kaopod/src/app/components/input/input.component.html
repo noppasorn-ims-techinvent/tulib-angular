@@ -24,7 +24,10 @@
       [attr.placeholder]="label"
       style="height: 40px; width: 100%"
       class="outline-none placeholder:text-font-disabled placeholder:text-sm"
-      />
+   [ngClass]="{
+        'text-center': position === 'center'
+      }">
+      
   </div>
   <div
     *ngIf="inputError == true && errorMessage != undefined"

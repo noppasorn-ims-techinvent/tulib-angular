@@ -19,8 +19,7 @@ namespace backend.Services.Interface
 
         private readonly AppSettings appSettings;
         public ITrace Trace { get; }
-        private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+
         private readonly ITagRepository tagRepository;
         public TagService(AppSettings appSettings, ITrace trace, ITagRepository tagRepository)
         {

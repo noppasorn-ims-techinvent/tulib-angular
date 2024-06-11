@@ -1,1 +1,8 @@
-<p>ticket-list works!</p>
+
+<div class="flex flex-col gap-4">
+    <div>{{selectedSchedule ? selectedSchedule.max - selectedSchedule.count : ''}}</div>
+    <div *ngFor="let ticket of ticketList">
+        <app-ticket-card [data]="ticket" ></app-ticket-card>
+    </div>
+</div>
+

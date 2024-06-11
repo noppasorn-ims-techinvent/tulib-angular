@@ -1,1 +1,35 @@
-<p>cart-list works!</p>
+<div class="py-6" style="width: 100%; height: 100%">
+  <div
+    class="bg-background rounded-2xl py-4 cart-card p-6"
+    style="width: 100%; height: 100%; min-height: calc(100vh - 395px)"
+  >
+    <div class="flex flex-col divide-y h-full">
+      <div
+        class="flex-none text-lg text-optoin2-primary-variant font-semibold pb-2"
+      >
+        ตะกร้าสินค้า
+      </div>
+      <div class="flex flex-col h-full">
+        <div class="grow">
+          <div *ngFor="let item of cartList; let i = index">
+            <app-cart-card [data]="item" (eventActionClick)="delete(i)"></app-cart-card>
+          </div>
+          
+        </div>
+        <div class="flex-none text-font-title text-sm">
+          <div class="flex justify-between">
+            <div>รวมราคา</div>
+            <div class="flex">
+              <div class="pe-4 text-optoin2-primary-variant font-semibold">{{ total | number }}</div>
+              <div>บาท</div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <app-button [text]="'ดำเนินการต่อ'" [width]="'100%'"></app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

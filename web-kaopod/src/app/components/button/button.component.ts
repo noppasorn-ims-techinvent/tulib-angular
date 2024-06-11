@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './button.component.html',
-  styleUrl: './button.component.css'
+  styleUrl: './button.component.css',
 })
 export class ButtonComponent {
   @Input() style: string = '';
@@ -14,10 +14,10 @@ export class ButtonComponent {
   @Input() width: string | undefined;
   @Input() text: string = 'Undefied';
   @Output() eventActionClick = new EventEmitter();
+  @Input() iconPath: string | undefined;
   @Input() disabled: boolean = false;
 
-
- onClick() {
+  onClick() {
     this.eventActionClick.emit();
   }
 }

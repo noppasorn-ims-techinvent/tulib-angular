@@ -3,6 +3,7 @@ using System.Text; // ใช้สำหรับการเข้ารหั�
 using backend.Data; // ใช้สำหรับการเชื่อมต่อข้อมูลในโปรเจค
 using backend.Data.Interface;
 using backend.Models; // ใช้สำหรับโมเดลในโปรเจค
+using backend.Services;
 using backend.Services.Interface;
 using backend.Utilities;
 using backend.Utilities.Interface;
@@ -66,12 +67,18 @@ try
     #region Services
     services.AddTransient<IJwtService, JwtService>();
     services.AddTransient<ITagService, TagService>();
+    services.AddTransient<IScheduleService, ScheduleService>();
+    services.AddTransient<IPromotionService, PromotionService>();
+    services.AddTransient<IStandardPriceService, StandardPriceService>();
     #endregion
 
     #region Repositories
     // services.AddTransient<IUserRepository, UserRepository>();
     services.AddTransient<ITagRepository, TagRepository>();
-    #endregion
+    services.AddTransient<IScheduleRepository, ScheduleRepository>();
+    services.AddTransient<IPromotionRepository, PromotionRepository>();
+    services.AddTransient<IStandardPriceRepository, StandardPriceRepository>();
+    #endregion;
 
     #endregion
 

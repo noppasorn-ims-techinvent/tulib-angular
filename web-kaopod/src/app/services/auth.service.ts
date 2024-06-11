@@ -87,43 +87,41 @@ export class AuthService {
       .post<AuthResponse>(`${this.apiUrl}Account/register`, data)
       .pipe(
         catchError((error) => {
-          // Log the error
           let errorMessage = 'An error occurred';
           if (error.error && Array.isArray(error.error)) {
-            const errorObject = error.error[0]; // Assuming only one error object is returned
+            const errorObject = error.error[0];
             errorMessage = `${errorObject.code}: ${errorObject.description}`;
           }
 
-          // Return a dummy response or null in case of error
           const dummyResponse: AuthResponse = {
             isSuccess: false,
             message: 'อีเมลนี้ได้ถูกใช้แล้วไม่สามารถลงทะเบียนได้',
             token: '',
           };
-          // Wrap the error response object in an observable using 'of' function
+
           return of(dummyResponse);
         }),
-        // Continue emitting the original response if no error occurred
+
         map((response: AuthResponse) => {
-          // If no error occurred, return the original response with isSuccess flag set to true
           return response;
         })
       );
   }
   update(data: UserDetail): Observable<AuthResponse> {
-    return this.http.put<AuthResponse>(`${this.apiUrl}Account/update`, data).pipe(
-      map((response: AuthResponse) => {
-        if (response.isSuccess) {
-          // Update token after successfully updating user details
-   
-          if (response.token) {
+    return this.http
+      .put<AuthResponse>(`${this.apiUrl}Account/update`, data)
+      .pipe(
+        map((response: AuthResponse) => {
+          if (response.isSuccess) {
+            // Update token after successfully updating user details
 
-            localStorage.setItem(this.tokerKey, response.token);
+            if (response.token) {
+              localStorage.setItem(this.tokerKey, response.token);
+            }
           }
-        }
-        return response;
-      })
-    );
+          return response;
+        })
+      );
   }
   getDetail = (): Observable<UserDetail> =>
     this.http.get<UserDetail>(`${this.apiUrl}Account/detail`);

@@ -1,27 +1,50 @@
 <div
-  class="bg-background rounded-full py-1 px-2"
-  style="height: 45px; width: 140px"
+  class="bg-background rounded-full py-1 px-px text-sm text-optoin2-primary-variant "
+  style="height: 45px; width: 120px"
+  (click)="data.max - data.count > 0 ? onClick() : null"
+  [ngClass]="[
+    onSelected ? 'bg-optoin2-primary-variant text-white' : '',
+    data.max - data.count <= 0
+      ? 'bg-gray-100 text-font-disabled '
+      : 'hover:bg-optoin2-primary-variant hover:text-white'
+  ]"
+  [attr.disabled]="data.max - data.count <= 0 ? true : null"
 >
   <div
-    class="flex text-sm text-optoin2-primary-variant justify-center items-center"
-    style="height: 100%;"
+    class="flex justify-center items-center"
+    style="height: 100%"
+    [ngClass]="[onSelected ? 'text-white' : '']"
   >
-    <div class="circle bg-black">
-      <!-- {{ data.status }} -->
+    <div
+      class="circle"
+      [ngClass]="{
+        'bg-font-disabled': data.max - data.count <= 0,
+        'bg-green-600': data.max > data.count && data.max - data.count >= 10,
+        'bg-yellow-500': data.max > data.count && data.max - data.count < 10
+      }"
+    >
+      {{ data.status }}
     </div>
-    <div class="flex flex-col ms-2 justify-center items-center">
+    <div class="flex flex-col ms-2 justify-center items-center"
+    [ngClass]="{
+      'text-font-disabled': data.max - data.count <= 0,
+      
+    }">
       <div class="flex">
         <div>
-          {{ data.startTime | date : "hh:mm" }}
+          {{ data.startTime | date : "HH:mm" }}
         </div>
         <div class="px-px">-</div>
         <div>
-          {{ data.endTime | date : "hh:mm" }}
+          {{ data.endTime | date : "HH:mm" }}
         </div>
       </div>
-      <!-- <div>
-        {{ data.remain }}
-      </div> -->
+      <div
+        *ngIf="data.max - data.count < 10 && data.max - data.count > 0"
+        class="text-xs"
+      >
+        {{ "จำนวนคงเหลือ " + (data.max - data.count) }}
+      </div>
     </div>
   </div>
 </div>

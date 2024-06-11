@@ -64,12 +64,12 @@ namespace backend.Controllers
             Console.WriteLine(currentUserId);
             if (currentUserId == null)
             {
-                // Handle null user case
+
                 return new Result<TagDto>(Trace)
                 {
                     Success = false,
                     Message = "User not authenticated",
-                    Data = null // Optionally, you can set Data to null or provide additional information
+                    Data = null
                 };
             }
 

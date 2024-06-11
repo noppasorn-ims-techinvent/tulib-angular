@@ -87,7 +87,8 @@ export class DatePickerComponent {
   }
 
   async selectedDate() {
-    const { year, month, day } = this.selectDateFrom.value;
+    if(this.selectDateFrom.value){
+       const { year, month, day } = this.selectDateFrom.value;
     const selectedDate = new Date(year, month - 1, day);
     const selectedDay = selectedDate.getDate();
     const selectedMonth = selectedDate.getMonth() + 1; // Months are 0-indexed
@@ -99,5 +100,10 @@ export class DatePickerComponent {
     this.control.setValue(
       formattedDay + '/' + formattedMonth + '/' + selectedYear
     );
+    }
+    else{
+      this.clearInput()
+    }
+   
   }
 }

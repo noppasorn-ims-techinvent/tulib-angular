@@ -29,25 +29,27 @@
               getFormControlByKey('prefix').touched
             "
             [errorMessage]="'กรุณาเลือกคำนำหน้า'"
+            style="width: 11%;"
           ></app-dropdown>
 
           <app-input
             [control]="getFormControlByKey('firstName')"
             [label]="'ชื่อ'"
             [placeholder]="'ชื่อ'"
-            [width]="'290px'"
+        
             [inputError]="
               getFormControlByKey('firstName').invalid &&
               getFormControlByKey('firstName').touched
             "
             [errorMessage]="'กรุณากรอกข้อมูล'"
             [required]="true"
+            style="width: 30%;"
           ></app-input>
           <app-input
             [control]="getFormControlByKey('lastName')"
             [label]="'นามสกุล'"
             [placeholder]="'นามสกุล'"
-            [width]="'425px'"
+            style="width: 47%;"
             [inputError]="
               getFormControlByKey('lastName').invalid &&
               getFormControlByKey('lastName').touched
@@ -61,13 +63,13 @@
             [control]="getFormControlByKey('telephone')"
             [label]="'เบอร์โทรศัพท์'"
             [placeholder]="'เบอร์โทรศัพท์'"
-            [width]="'425px'"
+            style="width: 47%;"
           ></app-input>
           <app-input
             [control]="getFormControlByKey('email')"
             [label]="'อีเมล'"
             [placeholder]="'อีเมล'"
-            [width]="'425px'"
+            style="width: 47%;"
             [inputError]="
               getFormControlByKey('email').invalid &&
               getFormControlByKey('email').touched
@@ -81,7 +83,7 @@
             [control]="getFormControlByKey('password')"
             [label]="'รหัสผ่าน'"
             [placeholder]="'รหัสผ่าน'"
-            [width]="'425px'"
+            style="width: 47%;"
             [inputError]="
               getFormControlByKey('password').invalid &&
               getFormControlByKey('password').touched
@@ -94,7 +96,7 @@
             [control]="getFormControlByKey('confirmPassword')"
             [label]="'ยืนยันรหัสผ่าน'"
             [placeholder]="'ยืนยันรหัสผ่าน'"
-            [width]="'425px'"
+            style="width: 47%;"
             [inputError]="
               getFormControlByKey('confirmPassword').invalid &&
               getFormControlByKey('confirmPassword').touched
@@ -120,6 +122,7 @@
             (eventActionClick)="onSubmit()"
             [text]="'ลงทะเบียน'"
             [disabled]="form.invalid"
+            [width]="'150px'"
           ></app-button>
         </div>
       </div>

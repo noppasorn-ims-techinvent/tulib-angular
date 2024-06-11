@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { TopBarComponent } from './top-bar/top-bar.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AppState } from './app-state';
 import { HomeComponent } from './pages/home/home.component';

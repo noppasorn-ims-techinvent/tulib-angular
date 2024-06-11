@@ -1,15 +1,22 @@
 <button
   (click)="onClick()"
-  class="py-2 rounded-full shadow-md bg-optoin2-primary-variant enabled:hover:bg-primary-variant disabled:opacity-25 "
+  class="button-shadow py-2 px-4 rounded-full shadow-md bg-optoin2-primary-variant enabled:hover:bg-primary-variant disabled:opacity-25"
   [ngClass]="[style ? style : '', disabled ? 'disabled' : '']"
   [ngStyle]="{
-    width: width ? width : '225px',
+    width: width ? width : '100%',
   
   }"
   type="submit"
   [disabled]="disabled"
+
 >
-  <div class="text-white text-md">
-    {{ text }}
+  <div class="flex justify-center items-center gap-4">
+    <div *ngIf="iconPath">
+        <img [src]="iconPath" />
+    </div>
+  
+    <div class="text-white text-md text-center">
+      {{ text }}
+    </div>
   </div>
 </button>

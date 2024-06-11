@@ -1,5 +1,9 @@
-<div class="flex">
-  <div *ngFor="let schedule of mockBookings">
-    <app-schedule-card [data]="schedule"></app-schedule-card>
+<div class="flex flex-wrap gap-3" style="width: 100%">
+  <div *ngFor="let schedule of scheduleList">
+    <app-schedule-card
+      [data]="schedule"
+      (eventActionClick)="schedule.id !== undefined && onSelected(schedule.id)"
+      [onSelected]="schedule.id === selected?.id"
+    ></app-schedule-card>
   </div>
 </div>

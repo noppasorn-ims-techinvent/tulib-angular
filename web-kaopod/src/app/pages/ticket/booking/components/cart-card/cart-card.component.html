@@ -1,1 +1,22 @@
-<p>cart-card works!</p>
+<div class="w-100 py-2 text-font-title text-sm">
+  <div class="flex justify-between font-semibold">
+    <div>{{ data.date | date : "dd/MM/yyyy" }}</div>
+
+    <div class="flex">
+      <div>{{ data.schedule.startTime | date : "HH:mm" }}</div>
+      <div class="mx-px">-</div>
+      <div>{{ data.schedule.endTime | date : "HH:mm" }}</div>
+    </div>
+  </div>
+  <div>{{ data.ticket.title? data.ticket.title : data.ticket.type }}</div>
+  <div class="flex justify-between">
+    <div class="flex">
+      <div class="me-4">จำนวน</div> 
+      <div class="font-semibold">
+        {{ data.quantity }}
+      </div>
+    </div>
+
+    <div class="text-optoin2-primary-variant underline cursor-pointer" (click)="onClick()">ลบ</div>
+  </div>
+</div>

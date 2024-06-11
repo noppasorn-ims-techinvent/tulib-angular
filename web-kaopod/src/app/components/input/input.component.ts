@@ -31,6 +31,7 @@ export class InputComponent implements OnChanges{
   @Input() inputError: boolean = false;
   @Input() required: boolean = false;
   @Input() control = new FormControl();
+  @Input() position : string = 'left'
 
   @Output() valueChange = new EventEmitter<string>();
 
