@@ -124,6 +124,31 @@ namespace backend.Data
             return Context.Tags.Where(tag => tag.Id == id).Count() > 0;
         }
 
+        public List<TagDto> GetTagAll()
+        {
+            return Context.Tags
+               .Where(t => t.Active == true)
+               .Select(t => new TagDto
+               {
+                   Id = t.Id,
+                   Code = t.Code,
+                   Name = t.Name,
+                   Active = t.Active
+               }).ToList();
+        }
 
+        public PaginationList<ArticleSubTag> GetTagColor()
+        {
+            var query = Context.Tags.Select(s => new ArticleSubTag
+            {
+                Id = s.Id,
+                Color = s.Code,
+                Name = s.Name
+            });
+            PaginationList<ArticleSubTag> tags = new PaginationList<ArticleSubTag>();
+            tags.Total = query.Count();
+            tags.Content = query.ToList();
+            return tags;
+        }
     }
 }

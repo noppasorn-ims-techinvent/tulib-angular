@@ -1,0 +1,36 @@
+<div class="modal-content">
+  <h2 mat-dialog-title class="modal-title">{{data?.action == 'add' ? 'Add' : 'Edit'}} Tag</h2>
+  <hr style="width: 100%" class="m-2" />
+  <mat-dialog-content class="dialog-content">
+    <app-input-normal
+      label="ชื่อ"
+      inputPlaceHolder="ชื่อ"
+      [control]="getKey('name')"
+      style="width: 250px"
+    ></app-input-normal>
+
+    <app-input-dropdown
+      label="สี"
+      [dropdownDatas]="dataColor"
+      [dataSelectedValueCodeColor]="form.get('code')?.value"
+      (eventSelectTag)="actionSelectCreateTag($event)"
+      style="width: 250px"
+    ></app-input-dropdown>
+
+    <app-dropdown
+      label="Active"
+      [options]="dataAvtive"
+      [control]="getKey('active')"
+      style="width: 600px"
+    ></app-dropdown>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="button-close font-semibold me-4" (click)="onClose()">
+      Close
+    </button>
+    <button (click)="data?.action == 'add' ? insertTag() : editTag()" class="button-add text-white font-semibold">
+      Save
+    </button>
+  </mat-dialog-actions>
+</div>

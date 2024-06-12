@@ -1,0 +1,49 @@
+<div class="scope-dropdown" ngbDropdown>
+  <div
+    [ngClass]="[
+      dropdownStyle,
+      dropdownDisabled ? 'disabled' : '',
+      dropdownError ? 'error' : ''
+    ]"
+    ngbDropdownToggle
+  >
+    <div class="scope-text-dropdown">
+      <div class="text-placeholder">
+        <div *ngIf="dropdownIconPath">
+          <img [src]="dropdownIconPath" alt="" />
+        </div>
+        <div>
+          {{ dropdownPlaceHolder }}
+        </div>
+      </div>
+      <div>
+        <img src="/assets/icons/dropdown-icon.svg" alt="" />
+      </div>
+    </div>
+  </div>
+  <div
+    ngbDropdownMenu
+    *ngIf="dropdownDatas != undefined"
+    class="dropdown-item-style"
+  >
+    <div
+      *ngFor="let item of dropdownDatas | keyvalue : originalOrder"
+      (click)="selectItem(item)"
+      ngbDropdownItem
+      [ngClass]="item.key == dropdownSelectedKey ? 'active-item' : '' "
+    >
+      {{ item.key }}
+    </div>
+  </div>
+  <div
+    ngbDropdownMenu
+    *ngIf="dropdownDatas == undefined"
+    class="dropdown-item-style"
+  >
+    <div ngbDropdownItem>ไม่พบข้อมูล</div>
+  </div>
+
+  <!-- <ng-template #dropdownNotValue>
+    <div ngbDropdownItem>ไม่พบข้อมูล</div>
+  </ng-template> -->
+</div>

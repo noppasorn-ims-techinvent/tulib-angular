@@ -1,0 +1,20 @@
+.button-back{
+  display: flex;
+  align-items: center;
+  img , span{
+    cursor: pointer;
+  }
+}
+
+.section-header{
+  display: flex;
+    align-items: center;
+}
+
+.col-lg-3{
+  padding: 12px;
+}
+
+.btn-back-style{
+  white-space: nowrap;
+}

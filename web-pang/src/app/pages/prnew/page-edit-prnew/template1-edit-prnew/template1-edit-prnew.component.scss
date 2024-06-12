@@ -1,0 +1,80 @@
+.setContainer {
+  padding: 28px;
+}
+
+::ng-deep .tooltip.show {
+  padding: 0 !important;
+}
+
+::ng-deep ngb-tooltip-window {
+  padding: 0 !important;
+}
+
+.ck-content .table td,
+.ck-content .table th {
+  overflow-wrap: break-word;
+  position: relative;
+}
+
+.ck-content .table table {
+  border: 1px double #b3b3b3;
+  border-collapse: collapse;
+  border-spacing: 0;
+  height: 100%;
+  width: 100%;
+}
+
+::ng-deep .table td,
+.table th {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+::ng-deep .ck-content .table table td,
+.ck-content .table table th {
+  border: 1px solid #bfbfbf;
+  min-width: 2em;
+  padding: .4em;
+}
+
+::ng-deep .preview {
+  pointer-events: none !important;
+
+  blockquote {
+    border-left: 5px solid #ccc;
+    font-style: italic;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+
+  svg {
+    display: none !important;
+  }
+
+  table {
+    border: 1px double #b3b3b3;
+    border-collapse: collapse;
+    border-spacing: 0;
+    height: 100%;
+    width: 100%;
+
+    th {
+      border: 1px solid #bfbfbf;
+      min-width: 2em;
+      padding: .4em;
+      background: rgb(69 56 56 / 5%);
+      font-weight: 700;
+    }
+
+    td {
+      border: 1px solid #bfbfbf;
+      min-width: 2em;
+      padding: 0.4em;
+      pointer-events: none !important;
+    }
+  }
+}

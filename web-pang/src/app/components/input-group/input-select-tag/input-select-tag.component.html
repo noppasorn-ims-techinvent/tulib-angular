@@ -1,0 +1,53 @@
+<div ngbDropdown class="input-primary">
+  <div class="set-group" ngbDropdownToggle>
+    <div class="tag-position">
+      <div *ngIf="dataSelected.length == 0">
+        <span class="style-placeholder">{{ inputPlaceHolder }}</span>
+      </div>
+      <div
+        *ngFor="let data of dataSelected"
+        class="tag-select"
+        [ngStyle]="{ background: data.value.color }"
+      >
+        {{ data.value.name }}
+      </div>
+    </div>
+
+    <div style="cursor: pointer" class="float-end">
+      <img
+        src="/assets/icons/plus-select.svg"
+        style="margin-right: 2px"
+        alt=""
+      />
+    </div>
+    <div ngbDropdownMenu class="dropdown-item-style">
+      <ng-container *ngIf="dropdownDatas; else notHaveData">
+        <label
+          style="margin: 0"
+          *ngFor="let item of dropdownDatas | keyvalue : setOrder"
+          [ngClass]="haveValueSelect(item) ? 'item-dropdown-active' : ''"
+          ngbDropdownItem
+        >
+          <div style="cursor: pointer" class="d-flex align-items-center m-0">
+            <div class="checkbox-style">
+              <input
+                [checked]="haveValueSelect(item)"
+                (change)="selectItem($event.target, item)"
+                name="{{ 'checkBox' + item.value }}"
+                id="myCheckbox"
+                type="checkbox"
+              />
+              <div class="setIcon"></div>
+            </div>
+            <div style="margin-left: 5px">
+              {{ item.key }}
+            </div>
+          </div>
+        </label>
+      </ng-container>
+      <ng-template #notHaveData>
+        <label style="margin: 0" ngbDropdownItem> ไม่มีข้อมูล </label>
+      </ng-template>
+    </div>
+  </div>
+</div>

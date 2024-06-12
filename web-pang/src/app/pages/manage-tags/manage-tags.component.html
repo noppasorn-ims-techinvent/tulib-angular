@@ -1,63 +1,43 @@
-<div class="bg-white h-screen flex justify-center">
+<div class="bg-white h-auto flex justify-center" style="overflow-y: auto">
   <div class="container">
     <div class="header">
       <span class="header-title">Tag</span>
-      <button type="submit" class="button-add text-white font-semibold">
+      <button (click)="openModal('add', null)" class="button-add text-white font-semibold">
         <mat-icon>add</mat-icon> Add Tag
       </button>
     </div>
 
-    <div class="table-container">
+    <div class="table-container" style="max-height: 600px; overflow-y: auto">
       <table class="status-table">
         <thead>
           <tr>
-            <th style="background-color: #edf6fc; color: #008ecf; width: 50px">
-              สี
-            </th>
-            <th style="background-color: #edf6fc; color: #008ecf; width: 100px">
-              ชื่อ
-            </th>
-            <th style="background-color: #edf6fc; color: #008ecf; width: 20px">
-              Status
-            </th>
-            <th
-              style="background-color: #edf6fc; color: #008ecf; width: 10px"
-            ></th>
+            <th style="background-color: #edf6fc; color: #008ecf; width: 50px">สี</th>
+            <th style="background-color: #edf6fc; color: #008ecf; width: 100px">ชื่อ</th>
+            <th style="background-color: #edf6fc; color: #008ecf; width: 20px">Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of paginatedData">
+          <tr *ngFor="let data of paginatedData" (click)="openModal('edit', data)">
             <td>
               <svg height="40" width="40">
-                <circle
-                  [attr.r]="18"
-                  cx="20"
-                  cy="20"
-                  [attr.fill]="data.color"
-                />
+                <circle [attr.r]="18" cx="20" cy="20" [attr.fill]="data?.code" />
               </svg>
             </td>
             <td>{{ data.name }}</td>
-            <td style="color: #1dbe80">{{ data.status }}</td>
-            <td>
-              <button class="icon-button">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-            </td>
+            <td [ngStyle]="{'color': data?.active ? '#1dbe80' : '#ff0000'}">{{ data?.active ? 'Active' : 'InActive' }}</td>
           </tr>
         </tbody>
       </table>
-      <!-- Pagination ด้วย MatPaginator -->
-      <div class="pagination">
-        <mat-paginator
-          [length]="pagination.totalItems"
-          [pageSize]="pagination.itemsPerPage"
-          [pageSizeOptions]="[5, 10, 25, 100]"
-          [pageIndex]="pagination.currentPage - 1"
-          (page)="onPageChange($event)"
-        >
-        </mat-paginator>
-      </div>
+    </div>
+    <!-- Pagination ด้วย MatPaginator -->
+    <div class="pagination">
+      <mat-paginator
+        [length]="pagination.totalItems"
+        [pageSize]="pagination.itemsPerPage"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        [pageIndex]="pagination.currentPage - 1"
+        (page)="onPageChange($event)">
+      </mat-paginator>
     </div>
   </div>
 </div>

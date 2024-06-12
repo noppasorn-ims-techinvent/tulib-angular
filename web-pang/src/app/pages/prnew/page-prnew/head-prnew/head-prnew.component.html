@@ -1,0 +1,31 @@
+<div class="row">
+  <div>
+    <div class="font-header mb-3">PR news</div>
+  </div>
+  <div class="col-xl-7 col-lg-2">
+    <app-input
+      inputStyle="primary-input"
+      inputPlaceHolder="ค้นหาชื่อบทความ"
+      inputIconPath="/assets/icons/search.svg"
+    >
+    </app-input>
+  </div>
+  <div class="col-xl-2 col-lg-2">
+    <app-button
+      buttonText="Filter"
+      buttonStyle="secondary-button"
+      buttonIconPath="/assets/icons/filter.svg"
+      (eventActionClick)="openSidebarFilterEnd()"
+    >
+    </app-button>
+  </div>
+  <div class="col-xl-3 col-lg-2">
+    <app-button
+      buttonText="Add PR news"
+      buttonStyle="primary-button"
+      buttonIconPath="/assets/icons/plus.svg"
+      (eventActionClick)="openPageCreatePRNew()"
+    >
+    </app-button>
+  </div>
+</div>

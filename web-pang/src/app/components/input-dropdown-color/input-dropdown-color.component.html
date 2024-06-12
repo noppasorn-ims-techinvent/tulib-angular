@@ -1,0 +1,45 @@
+<label class="input-label m-0.5">{{ label }}</label>
+<div
+  ngbDropdown
+  [ngClass]="[inputStyle]"
+>
+  <div class="set-group" ngbDropdownToggle>
+    <div class="tag-position">
+      <div *ngIf="dataSelected == null">
+        <span class="style-placeholder">{{ inputPlaceHolder }}</span>
+      </div>
+      <div
+        *ngIf="dataSelected != null"
+        class="circle-select"
+        [ngStyle]="{ 'background-color': dataSelected.value.color }"
+      ></div>
+    </div>
+
+    <div style="cursor: pointer" class="float-end">
+      <img
+        src="/assets/icons/dropdown-icon.svg"
+        style="margin-right: 8px"
+        alt=""
+      />
+    </div>
+
+    <!-- <div ngbDropdownMenu class="dropdown-item-style" >
+      <div ngbDropdownItem>ไม่พบข้อมูล</div>
+    </div> -->
+  </div>
+  <div ngbDropdownMenu class="dropdown-item-style">
+    <ng-container *ngIf="dropdownDatas; else notHaveData">
+      <div style="margin: 0" ngbDropdownItem class="color-position">
+        <div
+          (click)="selectIdColor(item)"
+          *ngFor="let item of dropdownDatas | keyvalue : setOrder"
+          class="circle"
+          [ngStyle]="{ 'background-color': item.value.color }"
+        ></div>
+      </div>
+    </ng-container>
+    <ng-template #notHaveData>
+      <label style="margin: 0" ngbDropdownItem> ไม่มีข้อมูล </label>
+    </ng-template>
+  </div>
+</div>

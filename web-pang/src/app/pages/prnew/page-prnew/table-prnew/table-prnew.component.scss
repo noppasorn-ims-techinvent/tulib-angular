@@ -1,0 +1,144 @@
+.status-table th,
+.status-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.status-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.set-scope-tag {
+  position: inherit;
+}
+
+.scope-circle {
+  display: flex;
+  margin-left: 5px;
+  padding: 5px;
+
+  .circle {
+    cursor: pointer;
+    position: inherit;
+    margin-left: -10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+}
+
+.test {
+  z-index: 2;
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background-color: red;
+}
+
+.table-style {
+  background-color: #F3FAFF !important;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  max-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fixed-header-table {
+  white-space: nowrap;
+}
+
+.table-style {
+  --bs-table-bg: #F3FAFF;
+
+  th,
+  td {
+    color: #008ECF !important;
+  }
+}
+
+//? START Tooltip
+.hover-tooltip {
+  position: inherit;
+  cursor: pointer;
+}
+
+::ng-deep .tooltip.show {
+  padding: 0 !important;
+}
+
+::ng-deep .custom-style-tooltip-tag .tooltip-arrow::before {
+  border-bottom-color: #666 !important;
+}
+
+::ng-deep .custom-style-tooltip-tag .tooltip-inner {
+  white-space: pre-line !important;
+  font-family: 'Kanit', sans-serif !important;
+  background-color: #666 !important;
+}
+
+::ng-deep ngb-tooltip-window {
+  padding: 0 !important;
+}
+
+//? END Tooltip
+
+.tag-all {
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #008ECF;
+}
+
+.setColorStyle {
+  background-color: #FFF !important;
+  border: 1px solid #009FE0;
+}
+
+.optionTable {
+  cursor: pointer;
+  position: relative;
+  overflow: visible !important;
+
+  .menu-option {
+    position: absolute;
+    width: 140px;
+    background: #FFF;
+    bottom: -30px;
+    right: 9px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    z-index: 2 !important;
+    .text-menu-option {
+      font-size: 14px;
+      color: var(--option-2-primary-variant, #008ECF);
+      padding: 9px 8px;
+    }
+  }
+}
+
+.active-optionEdit{
+  background-color: #F3FAFF !important;
+}
+
+.color-active{
+  color: #27AE60;
+}
+
+.color-inactive{
+  color: #B20000;
+}

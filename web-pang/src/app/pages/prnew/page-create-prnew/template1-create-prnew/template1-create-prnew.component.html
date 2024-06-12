@@ -1,0 +1,19 @@
+<div class="setContainer">
+  <app-header-create-prnew
+    (eventCreatePRNew)="actionCreatePRNew()"
+    (eventBackToPagePRNew)="actionBackToPagePRNew()"
+    [formCreate]="formCreatePRNew"
+  ></app-header-create-prnew>
+
+  <app-section-show-prnew-article
+    [formCreate]="formCreatePRNew"
+  ></app-section-show-prnew-article>
+
+  <div class="m-3"></div>
+
+  <app-section-detail-prnew-article
+    [formCreate]="formCreatePRNew"
+  ></app-section-detail-prnew-article>
+
+  <!-- <app-modal-preview-desktop #modalPreviewDesktop></app-modal-preview-desktop> -->
+</div>

@@ -1,0 +1,11 @@
+<button (click)="clickAction()"
+[ngClass]="[buttonStyle , buttonDisabled ? 'disabled' : '']">
+  <div class="position-content">
+    <div *ngIf="buttonIconPath != undefined" style="margin-right: 10px;">
+      <img [src]="buttonIconPath" alt="" />
+    </div>
+    <div class="text-button-style">
+      {{ buttonText }}
+    </div>
+  </div>
+</button>

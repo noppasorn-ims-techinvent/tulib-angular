@@ -32,7 +32,6 @@ namespace backend.Controllers
             this.AppSettings = AppSettings;
             _userManager = userManager;
             _jwtService = jwtService;
-
         }
 
         [AllowAnonymous]
@@ -56,12 +55,12 @@ namespace backend.Controllers
             result = tagService.GetTagById(id);
             return result;
         }
+
         [Authorize]
         [HttpPost]
         public Result<TagDto> CreateTag([FromBody] TagDto tagDto)
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            Console.WriteLine(currentUserId);
             if (currentUserId == null)
             {
                 // Handle null user case
@@ -96,6 +95,22 @@ namespace backend.Controllers
         {
             Result<string> result = new Result<string>(Trace);
             result = tagService.DeleteTag(id);
+            return result;
+        }
+
+        [Authorize]
+        [HttpGet("allTag")] 
+        public Result<List<TagDto>> GetTagAll()
+        {
+            Result<List<TagDto>> result = tagService.GetTagAll();
+            return result;
+        }
+
+        [Authorize]
+        [HttpGet("getTag")] 
+        public Result<PaginationList<ArticleSubTag>> GetTagColor()
+        {
+            Result<PaginationList<ArticleSubTag>> result = tagService.GetTagColor();
             return result;
         }
     }

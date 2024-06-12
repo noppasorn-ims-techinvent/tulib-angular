@@ -10,6 +10,8 @@ namespace backend.Data.Interface
     public interface ITagRepository
     {
         public PaginationList<TagDto> GetTags(int page, int size, TagDto? search);
+        public List<TagDto> GetTagAll();
+        public PaginationList<ArticleSubTag> GetTagColor();
         public TagDto GetTagtById(int id);
         public TagDto CreateTag(TagDto tagDto,string userId);
         public TagDto UpdateTag(TagDto tagDto, string userId);

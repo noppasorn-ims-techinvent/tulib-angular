@@ -1,0 +1,33 @@
+<ng-template #sidebarfilter let-offcanvas>
+  <div class="offcanvas-header">
+    <div class="offcanvas-title header-filter font-bold">Filter</div>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="offcanvas.dismiss('Cross click')"
+    ></button>
+  </div>
+  <hr class="my-1 set-hr-style" />
+  <div class="offcanvas-body show-filter">
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="mb-2" for="">วันที่เริ่มต้น</label>
+        <app-input-date></app-input-date>
+      </div>
+      <div class="col-lg-6">
+        <label class="mb-2" for="">วันที่สิ้นสุด</label>
+        <app-input-date></app-input-date>
+      </div>
+      <div class="col-lg-12 mt-3">
+        <label class="mb-2">Tag</label>
+        <app-input-select-tag
+          (eventSelectTag)="actionSelectTag($event)"
+          [dropdownDatas]="data"
+        >
+        </app-input-select-tag>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

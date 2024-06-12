@@ -1,0 +1,78 @@
+@import "color-theme";
+
+.primary-input{
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #BDBDBD;
+  background-color:#FFF;
+  font-size: 14px;
+  input{
+    background: none;
+    border: none;
+    &:focus{
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      color: #BDBDBD !important;
+    }
+  }
+
+
+  &.focus{
+    border: 1px solid #008ECF;
+  }
+
+  &:hover{
+    background-color: #F3FAFF;
+  }
+
+  &.disabled{
+    color: #BDBDBD;
+    border: 1px solid #BDBDBD;
+    background: #F2F2F2;
+    pointer-events: none;
+  }
+
+  &.error{
+    border: 1px solid #B20000;
+  }
+}
+
+.icon-style{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.icon-close-style{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.input-date{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  opacity: 0;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  color: transparent;
+  background: transparent;
+}

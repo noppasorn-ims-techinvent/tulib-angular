@@ -1,0 +1,27 @@
+
+.style-position{
+  position:absolute;
+  z-index: 2;
+}
+
+.tooltip-style{
+  font-size: 14px;
+  max-width: 1250px;
+  width: auto;
+  padding: 3px;
+  white-space: pre-wrap;
+  height: auto;
+  // border: 1px solid black;
+  border-radius: 4px;
+  color: white;
+  background-color: #666;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #666;
+}

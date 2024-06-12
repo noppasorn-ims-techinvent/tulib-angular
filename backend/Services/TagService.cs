@@ -16,11 +16,8 @@ namespace backend.Services.Interface
     public class TagService : ITagService
     {
 
-
         private readonly AppSettings appSettings;
         public ITrace Trace { get; }
-        private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ITagRepository tagRepository;
         public TagService(AppSettings appSettings, ITrace trace, ITagRepository tagRepository)
         {
@@ -123,6 +120,24 @@ namespace backend.Services.Interface
                 result.Success = true;
                 result.Message = appSettings.SuccessMessage.DeleteSuccess!;
             }
+            return result;
+        }
+
+        public Result<List<TagDto>> GetTagAll()
+        {
+            Result<List<TagDto>> result = new Result<List<TagDto>>(Trace);
+            result.Success = true;
+            result.Message = appSettings.SuccessMessage.GetSuccess!;
+            result.Data = tagRepository.GetTagAll();
+            return result;
+        }
+
+        public Result<PaginationList<ArticleSubTag>> GetTagColor()
+        {
+            Result<PaginationList<ArticleSubTag>> result = new Result<PaginationList<ArticleSubTag>>(Trace);
+            result.Success = true;
+            result.Message = appSettings.SuccessMessage.GetSuccess!;
+            result.Data = tagRepository.GetTagColor();
             return result;
         }
     }

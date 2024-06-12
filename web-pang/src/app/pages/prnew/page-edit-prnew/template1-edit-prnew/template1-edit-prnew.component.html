@@ -1,0 +1,17 @@
+<div class="setContainer">
+  <app-header-template1-edit-prnew
+    [formEdit]="formEditPRNew"
+    (eventEditPRNew)="actionEditPRNew()"
+    (eventBackToPagePRNew)="actionBackToPagePRNew()"
+  ></app-header-template1-edit-prnew>
+
+  <app-section-show-template1-edit-prnew
+   [formEdit]="formEditPRNew">
+  </app-section-show-template1-edit-prnew>
+
+  <div class="m-3"></div>
+
+  <app-section-detail-template1-edit-prnew
+    [formEdit]="formEditPRNew"
+  ></app-section-detail-template1-edit-prnew>
+</div>

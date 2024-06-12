@@ -1,0 +1,107 @@
+<table class="status-table">
+  <thead>
+    <tr>
+      <th style="background-color: #edf6fc; color: #008ecf; width: 50px">ลำดับ</th>
+      <th style="background-color: #edf6fc; color: #008ecf; width: 200px">ชื่อบทความ</th>
+      <th style="background-color: #edf6fc; color: #008ecf; width: 20px">Tag</th>
+      <th style="background-color: #edf6fc; color: #008ecf; width: 20px">Modified Date</th>
+      <th style="background-color: #edf6fc; color: #008ecf; width: 10px">Status</th>
+      <th style="background-color: #edf6fc; color: #008ecf; width: 10px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of paginatedData; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td class="hover-tooltip">
+        <span
+          (mouseenter)="onMouseHoverDetailTable(data.id)"
+          (mouseleave)="onMouseLeaveDetailTable()"
+        >
+          {{ data.title }}
+        </span>
+        <app-tooltip
+          [index]="data.id"
+          [isHoveredIndex]="hoverIndexDetail"
+          [tooltipText]="data.title"
+        ></app-tooltip>
+      </td>
+      <td style="padding: 0">
+        <div class="scope-circle">
+          <ng-container *ngIf="data.tagId?.length <= 3; else showItemMore">
+            <div
+              *ngFor="let itemTag of data.tagId"
+              placement="bottom"
+              [ngbTooltip]="itemTag.name"
+              tooltipClass="custom-style-tooltip-tag"
+              class="circle"
+              [ngStyle]="{ 'background-color': itemTag.color }"
+            ></div>
+          </ng-container>
+          <ng-template #showItemMore>
+            <div
+              placement="bottom"
+              [ngbTooltip]="data.tagId[0].name"
+              tooltipClass="custom-style-tooltip-tag"
+              class="circle"
+              [ngStyle]="{ 'background-color': data.tagId[0].color }"
+            ></div>
+            <div
+              placement="bottom"
+              [ngbTooltip]="data.tagId[1].name"
+              tooltipClass="custom-style-tooltip-tag"
+              class="circle"
+              [ngStyle]="{ 'background-color': data.tagId[1].color }"
+            ></div>
+            <div
+              placement="bottom"
+              [autoClose]="true"
+              [ngbTooltip]="list"
+              class="circle setColorStyle"
+              tooltipClass="custom-style-tooltip-tag"
+            >
+              <div class="tag-all">{{"+" + (data.tagId.length - 2)}}</div>
+            </div>
+          </ng-template>
+          <ng-template #list>
+            <div class="d-flex flex-column">
+              <span *ngFor="let tagMore of data.tagId; let i = index">
+                <span *ngIf="i >= 2">{{ tagMore.name }}</span>
+              </span>
+            </div>
+          </ng-template>
+        </div>
+      </td>
+      <!-- <td>
+        <svg height="40" width="40">
+          <circle [attr.r]="18" cx="20" cy="20" [attr.fill]="data?.code" />
+        </svg>
+      </td> -->
+      <td>{{ data.modifiedDate | date : "dd/MM/yyyy" }}</td>
+      <td [ngStyle]="{'color': data?.active ? '#1dbe80' : '#ff0000'}">{{ data?.active ? 'Active' : 'InActive' }}</td>
+      <td
+        (mouseenter)="onMouseHoverOptionSetting()"
+        (mouseleave)="onMouseLeaveOptionSetting()"
+        (click)="openOption(data.id)"
+        class="optionTable"
+      >
+        <img
+          [ngClass]="{ 'active-optionEdit': activeOptionSetting(data.id) }"
+          src="/assets/icons/edit-table.svg"
+          alt=""
+        />
+        <div *ngIf="activeOptionSetting(data.id)" class="menu-option">
+          <div (click)="openEditPRNew(data.id)" class="text-menu-option">Edit PR news</div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="pagination">
+  <mat-paginator
+    [length]="pagination.totalItems"
+    [pageSize]="pagination.itemsPerPage"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageIndex]="pagination.currentPage - 1"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

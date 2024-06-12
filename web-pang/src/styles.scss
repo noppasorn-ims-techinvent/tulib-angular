@@ -1,28 +1,18 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
+@import "bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 html, body {
   height: 100%;
   margin: 0;
-  padding: 0;
-  overflow: hidden;
+  font-size: large;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
+.offcanvas {
+  margin-top: 65px !important;
 }
 
-app-navbar {
-  flex-shrink: 0;
-}
-
-router-outlet {
-  flex-grow: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

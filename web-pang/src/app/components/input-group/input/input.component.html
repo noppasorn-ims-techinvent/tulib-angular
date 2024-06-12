@@ -1,0 +1,29 @@
+<div
+  [ngClass]="[
+    inputStyle,
+    statusFocus ? 'focus' : '' ,
+    inputDisabled ? 'disabled' : '',
+    inputError? 'error' : '']
+  "
+  class="input-group"
+>
+  <div *ngIf="inputIconPath" class="icon-style">
+    <img [src]="inputIconPath" alt="" />
+  </div>
+  <input
+    (focus)="actionFocusInput()"
+    (blur)="actionLostFocusInput()"
+    [type]="inputType"
+    [formControl]="control"
+    [placeholder]="inputPlaceHolder"
+    (input)="textChange()"
+    class="form-control"
+  />
+  <div
+    (click)="clearInput()"
+    *ngIf="statusShowCloseIcon"
+    class="icon-close-style"
+  >
+    <img src="assets/icons/close.svg" alt="" />
+  </div>
+</div>

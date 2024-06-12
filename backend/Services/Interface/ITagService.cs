@@ -14,5 +14,7 @@ namespace backend.Services.Interface
         public Result<TagDto> CreateTag(TagDto tagDto, string userId);
         public Result<TagDto> UpdateTag(TagDto tagDto, string userId);
         public Result<string> DeleteTag(int id);
+        public Result<List<TagDto>> GetTagAll();
+        public Result<PaginationList<ArticleSubTag>> GetTagColor();
     }
 }

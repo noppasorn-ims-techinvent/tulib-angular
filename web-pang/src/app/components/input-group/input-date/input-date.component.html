@@ -1,0 +1,40 @@
+<div
+  style="position: relative"
+  [ngClass]="[
+    inputStyle,
+    statusFocus ? 'focus' : '',
+    inputDisabled ? 'disabled' : '',
+    inputError ? 'error' : ''
+  ]"
+  class="input-group"
+>
+  <div *ngIf="inputIconPath" class="icon-style">
+    <img [src]="inputIconPath" alt="" />
+  </div>
+  <input
+    (focus)="actionFocusInput()"
+    (blur)="actionLostFocusInput()"
+    [type]="inputType"
+    [formControl]="control"
+    [placeholder]="inputPlaceHolder"
+    (input)="textChange()"
+    class="form-control"
+  />
+  <div class="icon-close-style">
+    <img src="assets/icons/calendar.svg" alt="" />
+  </div>
+  <div
+    (click)="clearInput()"
+    *ngIf="statusShowCloseIcon"
+    class="icon-close-style"
+  >
+    <img src="assets/icons/close.svg" alt="" />
+  </div>
+  <input
+    (change)="selectedDate()"
+    [formControl]="selectDateFrom"
+    class="input-date"
+    type="date"
+  />
+</div>
+

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { LoginRequest } from '../interfaces/login-request';
+import { LoginRequest } from '../interfaces/Auth/login-request';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { AuthResponse } from '../interfaces/auth-response';
+import { AuthResponse } from '../interfaces/Auth/auth-response';
 import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
@@ -76,5 +76,5 @@ export class AuthService {
     localStorage.removeItem(this.tokenKey);
   }
 
-  private getToken = (): string|null => localStorage.getItem(this.tokenKey) || '';
+  getToken = (): string|null => localStorage.getItem(this.tokenKey) || '';
 }

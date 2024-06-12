@@ -1,0 +1,27 @@
+<div
+  [ngClass]="[
+    inputStyle,
+    statusFocus ? 'focus' : '',
+    inputDisabled ? 'disabled' : '',
+    inputError ? 'error' : ''
+  ]"
+  class="input-group input-area-height"
+>
+  <textarea
+    class="form-control"
+    (focus)="actionFocusInput()"
+    (blur)="actionLostFocusInput()"
+    (input)="textChange()"
+    [formControl]="control"
+    [rows]="FixedRoleInputArea"
+    [cols]="FixedColInputArea ?? 0"
+    [placeholder]="inputPlaceHolder"
+  ></textarea>
+  <div
+    *ngIf="statusShowCloseIcon"
+    (click)="clearInput()"
+    class="icon-close-style"
+  >
+    <img src="assets/icons/close.svg" alt="" />
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="bg-white h-auto flex justify-center" style="overflow-y: auto">
+  <div class="container">
+    <app-head-prnew
+      (eventOpenSidebarFilter)="actionOpenSidebarFilterEnd()"
+    ></app-head-prnew>
+
+    <div class="table-container mt-3" style="max-height: 600px; overflow-y: auto">
+      <app-table-prnew></app-table-prnew>
+    </div>
+    <!-- Pagination ด้วย MatPaginator -->
+  </div>
+  <app-sidebar-filter-prnew #sidebar></app-sidebar-filter-prnew>
+</div>

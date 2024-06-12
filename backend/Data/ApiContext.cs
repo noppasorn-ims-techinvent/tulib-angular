@@ -13,7 +13,9 @@ namespace backend.Data
 
         //List of tables here
         public DbSet<Tag> Tags { get; set; } = default!;
-
+        public DbSet<Article> Articles { get; set; } = default!;
+        public DbSet<ArticleTag> ArticleTags { get; set; } = default!;
+        public DbSet<ArticleContent> ArticleContents { get; set; } = default!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -34,6 +36,27 @@ namespace backend.Data
 
             modelBuilder.Entity<Tag>()
                 .HasOne(t => t.ModifiedBy)
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // Article
+            modelBuilder.Entity<Article>()
+                .HasOne(t => t.CreatedBy)
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Article>()
+                .HasOne(t => t.ModifiedBy)
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
+            
+            modelBuilder.Entity<ArticleTag>()
+                .HasOne(t => t.CreatedBy)
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
+            
+            modelBuilder.Entity<ArticleContent>()
+                .HasOne(t => t.CreatedBy)
                 .WithMany()
                 .OnDelete(DeleteBehavior.NoAction);
         }

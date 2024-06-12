@@ -6,7 +6,6 @@
 
 .table-container {
   flex: 1;
-  overflow-y: auto;
 }
 
 .pagination {
@@ -81,4 +80,12 @@
 
 .icon-button mat-icon {
   vertical-align: middle;
+}
+// .custom-backdrop-class {
+//   background-color: rgba(0, 0, 0, 0.5);
+
+// }
+
+.chk-global-scrollblock {
+  overflow: hidden;
 }

@@ -1,2 +1,6 @@
+# Ignore Debug folder
+**/Debug/
+**/bin/
+.DS_Store
 **/.DS_Store
-.fake
+.DS_Store?

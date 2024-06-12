@@ -1,0 +1,123 @@
+.primary-input {
+  min-height: 40px;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid #BDBDBD;
+  background: #FFF;
+
+  &:hover {
+    background-color: #F3FAFF;
+  }
+
+  .set-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 37px;
+  }
+
+  .tag-position {
+    // padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    // padding: 4px 20px;
+
+    .tag-select {
+      border-radius: 28px;
+      background: #F2994A;
+      padding: 4px 20px;
+      font-weight: 600;
+      color: #FFF;
+      margin: 3px 8px;
+
+    }
+  }
+}
+
+.dropdown-menu.show {
+  display: block;
+  width: 100% !important;
+  inset: 0px 0px auto auto !important;
+  padding: 3px 0px !important;
+}
+
+.input-label {
+  display: block;
+  font-size: 16px;
+  color: #666666;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+
+.checkbox-style {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #666666;
+  background-color: white;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+input[type="checkbox"]:checked + .setIcon::before {
+  position: absolute;
+  content: "";
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 5px;
+  border: 2px solid #666666;
+  border-top: none;
+  border-right: none;
+  top: 3px;
+  left: 2px;
+  transform: rotate(-45deg);
+}
+
+.item-dropdown-active{
+  background-color: #00649f;
+  color: #FFF;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.style-placeholder{
+  color: var(--font-disable, #BDBDBD);
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.color-position {
+  // padding: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  // padding: 4px 20px;
+  .circle {
+    cursor: pointer;
+    margin: 4px 4px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    &:hover{
+      opacity: 0.8;
+    }
+  }
+
+}
+
+.circle-select {
+  margin: 0px 4px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  background-color: #FFF !important;
+}

@@ -1,0 +1,66 @@
+<mat-accordion>
+  <mat-expansion-panel #panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="titleTextCollaps">
+        แสดงแบบย่อ
+        <img
+          [attr.aria-expanded]="!isCollapsed"
+          style="cursor: pointer"
+          class="ml-2"
+          [ngClass]="
+            panel.expanded ? 'animationIconCollap2' : 'animationIconCollap'
+          "
+          src="/assets/icons/collap-up.svg"
+          alt=""
+        />
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="section-prnew-detail">
+      <div class="row">
+        <div class="col-lg-12">
+          <label class="mb-2">รูปในบทความ</label>
+          <div class="style-thumbnail flex items-center">
+            <input
+              style="z-index: 2"
+              (change)="uploadImg($event)"
+              class="upload-input"
+              type="file"
+            />
+
+            <img
+              *ngIf="!statusShowImg; else showPreview"
+              class="upload-img"
+              src="/assets/images/upload-img.png"
+              alt=""
+            />
+            <ng-template #showPreview>
+              <img class="preview-img" [src]="previewImage" alt="Preview-Img" />
+            </ng-template>
+          </div>
+        </div>
+        <div class="col-lg-12" style="margin-top: 41px">
+          <app-input
+            [control]="getFormCreateControlByKey('headerArticle')"
+            inputStyle="input-primary-header"
+            inputPlaceHolder="Header"
+          ></app-input>
+        </div>
+        <div class="col-lg-12">
+          <hr style="margin: 32px 0px 16px 0px; border-color: #008ecf" />
+          <div id="toolbar-container"></div>
+          <!-- This container will become the editable. -->
+          <div
+            style="border: 1px solid #bdbdbd; height: 350px"
+            id="editor"
+          >
+          <!-- <p>Content...</p> -->
+          </div>
+
+          <!-- <form method="post">
+            <textarea id="summernote" name="editordata"></textarea>
+          </form> -->
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

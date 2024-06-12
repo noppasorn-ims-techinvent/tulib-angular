@@ -7,3 +7,29 @@
   font-size: large;
   color:#008ECF;
 }
+
+.button-add {
+  background-color: #008ECF;
+  height: 40px;
+  width: 320px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 0 20px;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.button-add:hover {
+  background-color: #006ba1;
+}
+
+.button-add:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
